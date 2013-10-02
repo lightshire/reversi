@@ -1,0 +1,13 @@
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\bin\Release\ReversiExe.exe
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\bin\Release\ReversiExe.pdb
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\bin\Release\ReversiLibrary.dll
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\bin\Release\ReversiLibrary.pdb
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.BoardControl.resources
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.ChipControl.resources
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.Form1.resources
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.Properties.Resources.resources
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.exe
+C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.pdb
