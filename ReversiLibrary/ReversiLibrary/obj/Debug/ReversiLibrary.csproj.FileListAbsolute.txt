@@ -1,0 +1,15 @@
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.dll
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.pdb
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb
+D:\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.dll
+D:\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.pdb
+D:\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.csprojResolveAssemblyReference.cache
+D:\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
+D:\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.dll
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.pdb
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.csprojResolveAssemblyReference.cache
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb

@@ -25,3 +25,16 @@ D:\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe
 D:\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.Properties.Resources.resources
 D:\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.SubmitCoordinateForm.resources
 D:\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.csproj.GenerateResource.Cache
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.exe
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.pdb
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\bin\Debug\ReversiExe.exe
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\bin\Debug\ReversiExe.pdb
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\bin\Debug\ReversiLibrary.dll
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\bin\Debug\ReversiLibrary.pdb
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.csprojResolveAssemblyReference.cache
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.BoardControl.resources
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.ChipControl.resources
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.Form1.resources
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.Properties.Resources.resources
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.SubmitCoordinateForm.resources
+\\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.csproj.GenerateResource.Cache

@@ -1,0 +1,10 @@
+C:\Users\Sarah\AppData\Local\Temporary Projects\ReversiLibrary\bin\Release\ReversiLibrary.dll
+C:\Users\Sarah\AppData\Local\Temporary Projects\ReversiLibrary\bin\Release\ReversiLibrary.pdb
+C:\Users\Sarah\AppData\Local\Temporary Projects\ReversiLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Sarah\AppData\Local\Temporary Projects\ReversiLibrary\obj\Release\ReversiLibrary.dll
+C:\Users\Sarah\AppData\Local\Temporary Projects\ReversiLibrary\obj\Release\ReversiLibrary.pdb
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.dll
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.pdb
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.dll
+C:\Users\Sarah\Desktop\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.pdb
