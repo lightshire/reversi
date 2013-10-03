@@ -31,14 +31,15 @@ namespace ReversiLibrary.GameModels
 
         public static Board getInstance { get; set; }
         public Dictionary<Point, Chip> boardChips { get; set; }
+       
         public Color teamColor { get; set; }
+
         public Board()
         {
             boardChips = new Dictionary<Point, Chip>();
             teamColor = Color.Black;
             Board.getInstance = this;
         }
-
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
             this.boardChips = boardChips;
@@ -64,6 +65,46 @@ namespace ReversiLibrary.GameModels
 
         }
 
+        public void declareMove()
+        {
+
+        }
+
+        public List<Point> availableMoves()
+        {
+            List<Point> points = new List<Point>();
+                    
+            return points;
+        }
+
+        public Dictionary<Point, Chip> myChips()
+        {
+            Dictionary<Point, Chip> chips = new Dictionary<Point, Chip>();
+            foreach (var chip in chips)
+            {
+                if (chip.Value.chipColor == teamColor)
+                {
+                    chips.Add(chip.Key, chip.Value);
+                }
+            }
+            return chips;
+        }
+
+        public Dictionary<Point, Chip> opponentChips()
+        {
+            Dictionary<Point, Chip> chips = new Dictionary<Point, Chip>();
+            foreach (var chip in chips)
+            {
+                if (chip.Value.chipColor != teamColor)
+                {
+                    chips.Add(chip.Key, chip.Value);
+                }
+            }
+            return chips;
+        }
+
+        
+
         public void addChip(Point point, Chip chip)
         {
             boardChips.Add(point, chip);  
@@ -73,15 +114,10 @@ namespace ReversiLibrary.GameModels
             {
                 ChipAdded(point, chip);
             }
-
-           
-            
-
-           
-
-            
         }
 
+
+        #region seeking region
         public void changeState(int x, int y, bool state, Color color)
         {
 
@@ -433,7 +469,7 @@ namespace ReversiLibrary.GameModels
         #endregion
 
 
-
+        #endregion
 
     }
 }
