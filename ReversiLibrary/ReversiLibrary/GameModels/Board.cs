@@ -75,7 +75,7 @@ namespace ReversiLibrary.GameModels
          
             addChip(new Point(4, 5), new Chip(Color.Black, true));
 
-            availableMoves(Color.Yellow);
+            availableMoves(Color.Yellow, boardChips);
         }
 
         public void declareMove()
@@ -83,11 +83,49 @@ namespace ReversiLibrary.GameModels
 
         }
 
-        public List<Point> availableMoves(Color color)
+        public List<Point> availableMoves(Color color, Dictionary<Point, Chip> boardState)
         {
+            
             List<Point> points = new List<Point>();
             Dictionary<Point, Chip> chips = color == teamColor ? opponentChips() : myChips();
-            
+
+            bool endFound = false;
+            bool opponentFound = false;
+            foreach (var state in boardState)
+            {
+                int end = 0;
+                int start = 0;
+
+                end = 8;
+                start = state.Key.Y;
+
+                while (!endFound)
+                {
+                    start++;
+                    Point cursor = new Point(state.Key.X, start);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            continue;
+                        }
+                        if (opponentFound)
+                        {
+                            points.Add(cursor);
+                            endFound = true;
+                        }
+                    }
+                    else
+                    {
+                        //cut the do while
+                        endFound = true;
+                    }
+                    
+                    
+                    
+                }
+            }
            
 
             if (AvailableMovesGenerated != null)
