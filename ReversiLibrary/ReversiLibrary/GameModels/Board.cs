@@ -87,17 +87,52 @@ namespace ReversiLibrary.GameModels
         {
             
             List<Point> points = new List<Point>();
-            Dictionary<Point, Chip> chips = color == teamColor ? opponentChips() : myChips();
-
-            bool endFound = false;
-            bool opponentFound = false;
-            foreach (var state in boardState)
+            Dictionary<Point, Chip> chips = color == teamColor ? myChips() : opponentChips();
+            
+            
+            
+            foreach (var state in chips)
             {
                 int end = 0;
                 int start = 0;
+                bool endFound = false;
+                bool opponentFound = false;
 
+
+                #region going to top
+                end = 1;
+                start = state.Key.Y;
+
+                while (!endFound)
+                {
+                    start--;
+                    Point cursor = new Point(state.Key.X, start);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+                #endregion
+
+                #region going to bottom
                 end = 8;
                 start = state.Key.Y;
+                endFound = false;
+                opponentFound = false;
 
                 while (!endFound)
                 {
@@ -108,24 +143,193 @@ namespace ReversiLibrary.GameModels
                         if (boardChips[cursor].chipColor != color)
                         {
                             opponentFound = true;
-                            continue;
+                            //continue;
                         }
-                        if (opponentFound)
-                        {
-                            points.Add(cursor);
-                            endFound = true;
-                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
                     }
                     else
                     {
-                        //cut the do while
                         endFound = true;
                     }
-                    
-                    
-                    
+
                 }
+
+                #endregion
+
+                #region going left
+                endFound = false;
+                opponentFound = false;
+                start = state.Key.X;
+                end = 1;
+
+                while (!endFound)
+                {
+                    start--;
+                    Point cursor = new Point(start, state.Key.Y);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+
+                #endregion
+
+                #region going right
+                endFound = false;
+                opponentFound = false;
+                start = state.Key.X;
+                end = 8;
+
+                while (!endFound)
+                {
+                    start++;
+                    Point cursor = new Point(start, state.Key.Y);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+
+
+                #endregion
+
+                #region diagonal top left
+                
+                endFound = false;
+                opponentFound = false;
+
+                int x = state.Key.X;
+                int y = state.Key.Y;
+
+                while (!endFound)
+                {
+                    x--;
+                    y--;
+                    Point cursor = new Point(x, y);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+
+                #endregion
+
+                #region top right
+                endFound = false;
+                opponentFound = false;
+
+                int x = state.Key.X;
+                int y = state.Key.Y;
+
+                while (!endFound)
+                {
+                    x++;
+                    y--;
+                    Point cursor = new Point(x, y);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+                #endregion
+
+                #region bottom left
+                endFound = false;
+                opponentFound = false;
+
+                int x = state.Key.X;
+                int y = state.Key.Y;
+
+                while (!endFound)
+                {
+                    x--;
+                    y++;
+                    Point cursor = new Point(x, y);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+                #endregion
+                
+
+            
             }
+
            
 
             if (AvailableMovesGenerated != null)
@@ -139,8 +343,8 @@ namespace ReversiLibrary.GameModels
 
         public Dictionary<Point, Chip> myChips()
         {
-            Dictionary<Point, Chip> chips = boardChips;
-            foreach (var chip in chips)
+            Dictionary<Point, Chip> chips = new Dictionary<Point,Chip>();
+            foreach (var chip in boardChips)
             {
                 if (chip.Value.chipColor == teamColor)
                 {
@@ -153,8 +357,8 @@ namespace ReversiLibrary.GameModels
 
         public Dictionary<Point, Chip> opponentChips()
         {
-            Dictionary<Point, Chip> chips = boardChips;
-            foreach (var chip in chips)
+            Dictionary<Point, Chip> chips = new Dictionary<Point,Chip>();
+            foreach (var chip in boardChips)
             {
                 if (chip.Value.chipColor != teamColor)
                 {
