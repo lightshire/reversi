@@ -21,9 +21,18 @@ namespace ReversiExe
             board = new Board();
             board.ChipAdded += new ChipAddedHandler(board_ChipAdded);
             board.ChipFlipped += new ChipFlippedHandler(board_ChipFlipped);
+            board.AvailableMovesGenerated += new AvailableMovesGeneratedHandler(board_AvailableMovesGenerated);
             createBoard();
             board.setUpBoard();
             
+        }
+
+        void board_AvailableMovesGenerated(List<Point> points)
+        {
+            foreach (Point point in points)
+            {
+                chipControls[point.Y - 1, point.X - 1].BackColor = Color.Red;
+            }
         }
 
         void board_ChipFlipped(Point point, Chip chip)

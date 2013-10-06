@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace ReversiLibrary.GameModels
 {
@@ -10,11 +11,15 @@ namespace ReversiLibrary.GameModels
     //create event to fetch the chips in the board
     public delegate void ChipAddedHandler(Point point, Chip chip);
     public delegate void ChipFlippedHandler(Point point, Chip chip);
+    public delegate void AvailableMovesGeneratedHandler(List<Point> points);
+    
+
 
     public class Board
     {
         public event ChipAddedHandler ChipAdded;
         public event ChipFlippedHandler ChipFlipped;
+        public event AvailableMovesGeneratedHandler AvailableMovesGenerated;
 
         public struct Direction
         {
@@ -31,19 +36,25 @@ namespace ReversiLibrary.GameModels
 
         public static Board getInstance { get; set; }
         public Dictionary<Point, Chip> boardChips { get; set; }
-       
-        public Color teamColor { get; set; }
+        public double headChance { get; set; }
+        public double tailsChance { get; set; }
 
+        public Color teamColor { get; set; }
+        
         public Board()
         {
             boardChips = new Dictionary<Point, Chip>();
             teamColor = Color.Black;
             Board.getInstance = this;
+            headChance = 0;
+            tailsChance = 0;
         }
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
             this.boardChips = boardChips;
             this.teamColor = teamColor;
+            headChance = 0;
+            tailsChance = 0;
         }
         public Board(Board board)
         {
@@ -55,6 +66,7 @@ namespace ReversiLibrary.GameModels
 
         public void setUpBoard()
         {
+            Debug.WriteLine("Board has been setuped");
             addChip(new Point(4, 4), new Chip(Color.Yellow, true));
             
             addChip(new Point(5, 5), new Chip(Color.Yellow, true));
@@ -63,6 +75,7 @@ namespace ReversiLibrary.GameModels
          
             addChip(new Point(4, 5), new Chip(Color.Black, true));
 
+            availableMoves(Color.Yellow);
         }
 
         public void declareMove()
@@ -70,21 +83,31 @@ namespace ReversiLibrary.GameModels
 
         }
 
-        public List<Point> availableMoves()
+        public List<Point> availableMoves(Color color)
         {
             List<Point> points = new List<Point>();
-                    
+            Dictionary<Point, Chip> chips = color == teamColor ? opponentChips() : myChips();
+            
+           
+
+            if (AvailableMovesGenerated != null)
+            {
+                AvailableMovesGenerated(points);
+            }
+
+            Debug.WriteLine("Available points for move: "+points.Count);
             return points;
         }
 
         public Dictionary<Point, Chip> myChips()
         {
-            Dictionary<Point, Chip> chips = new Dictionary<Point, Chip>();
+            Dictionary<Point, Chip> chips = boardChips;
             foreach (var chip in chips)
             {
                 if (chip.Value.chipColor == teamColor)
                 {
-                    chips.Add(chip.Key, chip.Value);
+                    if (!chips.ContainsKey(chip.Key))
+                        chips.Add(chip.Key, chip.Value);
                 }
             }
             return chips;
@@ -92,12 +115,13 @@ namespace ReversiLibrary.GameModels
 
         public Dictionary<Point, Chip> opponentChips()
         {
-            Dictionary<Point, Chip> chips = new Dictionary<Point, Chip>();
+            Dictionary<Point, Chip> chips = boardChips;
             foreach (var chip in chips)
             {
                 if (chip.Value.chipColor != teamColor)
                 {
-                    chips.Add(chip.Key, chip.Value);
+                    if(!chips.ContainsKey(chip.Key))
+                        chips.Add(chip.Key, chip.Value);
                 }
             }
             return chips;

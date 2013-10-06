@@ -13,3 +13,8 @@ D:\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\Revers
 \\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.csprojResolveAssemblyReference.cache
 \\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
 \\dell\AI DUMP FOLDER\Reversi Project\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb
+C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.dll
+C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.pdb
+C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
+C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb

@@ -104,7 +104,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ReversiLibrary\ReversiLibrary\ReversiLibrary.csproj">
+    <ProjectReference Include="..\ReversiLibrary\ReversiLibrary\ReversiLibrary.csproj">
       <Project>{ADAB09FE-F7A4-41F2-B6E7-8AB72ED7B0B9}</Project>
       <Name>ReversiLibrary</Name>
     </ProjectReference>
