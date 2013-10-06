@@ -38,3 +38,5 @@ D:\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe
 \\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.Properties.Resources.resources
 \\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.SubmitCoordinateForm.resources
 \\dell\AI DUMP FOLDER\Reversi Project\ReversiExe\ReversiExe\obj\x86\Debug\ReversiExe.csproj.GenerateResource.Cache
+C:\Users\Sarah\reversi\ReversiExe\obj\x86\Debug\ReversiExe.exe
+C:\Users\Sarah\reversi\ReversiExe\obj\x86\Debug\ReversiExe.pdb
