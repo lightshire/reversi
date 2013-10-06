@@ -61,7 +61,7 @@ namespace ReversiExe
                 {
                     ChipControl control = new ChipControl(ctr);
                     control.Location    = new Point(initialWidth, initialHeight);
-                    control.BackColor   = Color.Azure;
+                    control.BackColor   = Color.Green;
                     chipControls[i, j]  = control;
                     this.Controls.Add(chipControls[i, j]);
                     initialWidth += 50;

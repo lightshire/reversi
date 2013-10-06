@@ -18,3 +18,8 @@ C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.pd
 C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
 C:\Users\Sarah\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb
+D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.dll
+D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\bin\Debug\ReversiLibrary.pdb
+D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.csprojResolveAssemblyReference.cache
+D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.dll
+D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\obj\Debug\ReversiLibrary.pdb

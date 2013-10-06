@@ -1,6 +1,6 @@
 ﻿namespace ReversiExe
 {
-    partial class SubmitCoordinateForm
+    partial class SubmitPositionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,22 +38,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 13);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "X: ";
+            this.label1.Text = "Row: ";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(38, 6);
+            this.textBox1.Location = new System.Drawing.Point(49, 13);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(39, 20);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(116, 6);
+            this.textBox2.Location = new System.Drawing.Point(153, 12);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(39, 20);
             this.textBox2.TabIndex = 3;
@@ -61,27 +61,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(90, 9);
+            this.label2.Location = new System.Drawing.Point(107, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Y: ";
+            this.label2.Text = "Column: ";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(173, 4);
+            this.button1.Location = new System.Drawing.Point(212, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 23);
+            this.button1.Size = new System.Drawing.Size(85, 36);
             this.button1.TabIndex = 4;
             this.button1.Text = "Go";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // SubmitCoordinateForm
+            // SubmitPositionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(233, 36);
+            this.ClientSize = new System.Drawing.Size(302, 44);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -90,7 +90,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SubmitCoordinateForm";
+            this.Name = "SubmitPositionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SubmitCoordinateForm";
             this.ResumeLayout(false);

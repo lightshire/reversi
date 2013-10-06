@@ -19,7 +19,7 @@ namespace ReversiExe
         public ChipControl(int i)
         {
             InitializeComponent();
-            label1.Text = i.ToString();
+           // label1.Text = i.ToString();
         }
     }
 }

@@ -51,3 +51,17 @@ C:\Users\Sarah\reversi\ReversiExe\obj\x86\Debug\ReversiExe.Form1.resources
 C:\Users\Sarah\reversi\ReversiExe\obj\x86\Debug\ReversiExe.Properties.Resources.resources
 C:\Users\Sarah\reversi\ReversiExe\obj\x86\Debug\ReversiExe.SubmitCoordinateForm.resources
 C:\Users\Sarah\reversi\ReversiExe\obj\x86\Debug\ReversiExe.csproj.GenerateResource.Cache
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.exe
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.pdb
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.csprojResolveAssemblyReference.cache
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.BoardControl.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.ChipControl.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.InitialForm.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.MainForm.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.Properties.Resources.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.csproj.GenerateResource.Cache
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Debug\ReversiExe.SubmitPositionForm.resources
+D:\Documents\AI\reversi\ReversiExe\bin\Debug\ReversiExe.exe
+D:\Documents\AI\reversi\ReversiExe\bin\Debug\ReversiExe.pdb
+D:\Documents\AI\reversi\ReversiExe\bin\Debug\ReversiLibrary.dll
+D:\Documents\AI\reversi\ReversiExe\bin\Debug\ReversiLibrary.pdb

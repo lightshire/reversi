@@ -71,9 +71,9 @@ namespace ReversiLibrary.GameModels
         {
             Debug.WriteLine("Board has been setuped");
             initialState = true;
-            addChip(new Point(4, 4), new Chip(Color.Yellow, true));
+            addChip(new Point(4, 4), new Chip(Color.White, true));
             
-            addChip(new Point(5, 5), new Chip(Color.Yellow, true));
+            addChip(new Point(5, 5), new Chip(Color.White, true));
           
             addChip(new Point(5, 4), new Chip(Color.Black, true));
          
