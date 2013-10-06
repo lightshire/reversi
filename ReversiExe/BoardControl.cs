@@ -44,6 +44,7 @@ namespace ReversiExe
         void board_ChipAdded(Point point, Chip chip)
         {
             chipControls[point.Y-1, point.X-1].BackColor = chip.chipColor;
+            
         }
 
         public void createBoard()

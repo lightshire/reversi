@@ -38,7 +38,7 @@ namespace ReversiLibrary.GameModels
         public Dictionary<Point, Chip> boardChips { get; set; }
         public double headChance { get; set; }
         public double tailsChance { get; set; }
-
+        public bool initialState { get; set; }
         public Color teamColor { get; set; }
         
         public Board()
@@ -48,6 +48,7 @@ namespace ReversiLibrary.GameModels
             Board.getInstance = this;
             headChance = 0;
             tailsChance = 0;
+            initialState = false;
         }
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
@@ -55,10 +56,12 @@ namespace ReversiLibrary.GameModels
             this.teamColor = teamColor;
             headChance = 0;
             tailsChance = 0;
+            initialState = false;
         }
         public Board(Board board)
         {
             Board.getInstance = board;
+            initialState = false;
         }
 
 
@@ -67,6 +70,7 @@ namespace ReversiLibrary.GameModels
         public void setUpBoard()
         {
             Debug.WriteLine("Board has been setuped");
+            initialState = true;
             addChip(new Point(4, 4), new Chip(Color.Yellow, true));
             
             addChip(new Point(5, 5), new Chip(Color.Yellow, true));
@@ -75,7 +79,10 @@ namespace ReversiLibrary.GameModels
          
             addChip(new Point(4, 5), new Chip(Color.Black, true));
 
-            availableMoves(Color.Yellow, boardChips);
+            availableMoves(this.teamColor, boardChips);
+
+            initialState = false;
+        
         }
 
         public void declareMove()
@@ -95,6 +102,8 @@ namespace ReversiLibrary.GameModels
             {
                 int end = 0;
                 int start = 0;
+                int x = 0;
+                int y = 0;
                 bool endFound = false;
                 bool opponentFound = false;
 
@@ -230,8 +239,8 @@ namespace ReversiLibrary.GameModels
                 endFound = false;
                 opponentFound = false;
 
-                int x = state.Key.X;
-                int y = state.Key.Y;
+                x = state.Key.X;
+                y = state.Key.Y;
 
                 while (!endFound)
                 {
@@ -264,8 +273,8 @@ namespace ReversiLibrary.GameModels
                 endFound = false;
                 opponentFound = false;
 
-                int x = state.Key.X;
-                int y = state.Key.Y;
+                x = state.Key.X;
+                y = state.Key.Y;
 
                 while (!endFound)
                 {
@@ -297,8 +306,8 @@ namespace ReversiLibrary.GameModels
                 endFound = false;
                 opponentFound = false;
 
-                int x = state.Key.X;
-                int y = state.Key.Y;
+                x = state.Key.X;
+                y = state.Key.Y;
 
                 while (!endFound)
                 {
@@ -325,9 +334,40 @@ namespace ReversiLibrary.GameModels
 
                 }
                 #endregion
-                
 
-            
+                #region bottom right
+                endFound = false;
+                opponentFound = false;
+
+                x = state.Key.X;
+                y = state.Key.Y;
+
+                while (!endFound)
+                {
+                    x++;
+                    y++;
+                    Point cursor = new Point(x, y);
+                    if (boardChips.ContainsKey(cursor))
+                    {
+                        if (boardChips[cursor].chipColor != color)
+                        {
+                            opponentFound = true;
+                            //continue;
+                        }
+                    }
+                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    {
+                        points.Add(cursor);
+                        endFound = true;
+                    }
+                    else
+                    {
+                        endFound = true;
+                    }
+
+                }
+                #endregion
+
             }
 
            
@@ -373,6 +413,8 @@ namespace ReversiLibrary.GameModels
 
         public void addChip(Point point, Chip chip)
         {
+            
+
             boardChips.Add(point, chip);  
             instantiateMove(point.X, point.Y, chip.chipColor);
 
@@ -380,6 +422,13 @@ namespace ReversiLibrary.GameModels
             {
                 ChipAdded(point, chip);
             }
+
+            if (!initialState)
+            {
+                availableMoves(chip.chipColor, boardChips);
+            }
+            
+            
         }
 
 
