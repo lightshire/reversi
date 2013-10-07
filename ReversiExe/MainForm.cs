@@ -86,6 +86,11 @@ namespace ReversiExe
             coin = "tails";
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+        }
+
 
 
 
