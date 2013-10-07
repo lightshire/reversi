@@ -410,7 +410,6 @@ namespace ReversiLibrary.GameModels
         }
 
         
-
         public void addChip(Point point, Chip chip)
         {
             
@@ -427,7 +426,6 @@ namespace ReversiLibrary.GameModels
             {
                 availableMoves(chip.chipColor, boardChips);
             }
-            
             
         }
 

@@ -45,12 +45,12 @@ namespace ReversiExe
         private void button1_Click(object sender, EventArgs e)
         {
             if (coin!="")
-            {
+            {//first move
                 SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
                 form.ShowDialog();
 
                 if (coin == "tails")
-                {
+                {//second move
                     SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
                     form2.ShowDialog();
                 }
@@ -65,7 +65,10 @@ namespace ReversiExe
         {
             //List<Point> headsAvailableMove = availableMoves();
 
-
+            if (coin != "")
+            { 
+                //??
+            }
             SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
             form.ShowDialog();
             btnOppMove.Enabled = true;
