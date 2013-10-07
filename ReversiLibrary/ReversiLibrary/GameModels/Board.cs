@@ -639,11 +639,8 @@ namespace ReversiLibrary.GameModels
             {
                 ChipAdded(point, chip);
             }
-
-            if (!initialState)
-            {
-                availableMoves(chip.chipColor == Color.Black ? Color.White : Color.Black, boardChips);
-            }
+            availableMoves(chip.chipColor == Color.Black ? Color.White : Color.Black, boardChips);
+            
             
         }
 

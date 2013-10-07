@@ -36,13 +36,21 @@ namespace ReversiLibrary.GameModels
             currentBoard = board;
         }
 
-        public Move bestMove(Board board, Color color, int depth)
+        public Move bestMove(Board board, Color color, int depth, bool initialMove)
         {
 
             Move point = new Move();
+            List<Point> availableMoves = new List<Point>();
             //get available moves so error handling will be limited.
-            
-            List<Point> availableMoves = (board.initialState) ? board.availableMoves(color, board.boardChips) : board.availableMoves(color == Color.Black ? Color.White : Color.Black, board.boardChips);
+
+            if (initialMove)
+            {
+                availableMoves = board.availableMoves(color, board.boardChips);
+            }
+            else
+            {
+                availableMoves = board.availableMoves(color == Color.Black ? Color.White : Color.Black, board.boardChips);
+            }
             
             
             foreach (Point _point in availableMoves)
@@ -81,7 +89,7 @@ namespace ReversiLibrary.GameModels
                 }
                 else
                 {
-                    Move lookAheadPoint = bestMove(newBoard, color, depth + 1);
+                    Move lookAheadPoint = bestMove(newBoard, color, depth + 1, false);
                     point.score = lookAheadPoint.score;
 
                     if (point.point.X <= 0)
