@@ -58,13 +58,13 @@ namespace ReversiLibrary.GameModels
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
 
-                int opponentMoves = newBoard.availableMoves(nextColor, newBoard.boardChips).Count;
+                int opponentMoves = newBoard.availableMoves(nextColor == Color.Black ? Color.White : Color.Black, newBoard.boardChips).Count;
 
                 if (opponentMoves == 0)
                 {
                     nextColor = nextColor == Color.Black ? Color.White : Color.Black;
 
-                    if (newBoard.availableMoves(nextColor, newBoard.boardChips).Count == 0)
+                    if (newBoard.availableMoves(nextColor == Color.Black ? Color.White : Color.Black, newBoard.boardChips).Count == 0)
                     {
                         endGame = true;
                     }

@@ -73,7 +73,7 @@ namespace ReversiLibrary.GameModels
         }
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
-            this.boardChips = boardChips;
+            this.boardChips = new Dictionary<Point,Chip>(boardChips);
             this.teamColor = teamColor;
             this.opponentColor = Color.White;
             headChance = 0;
@@ -86,7 +86,7 @@ namespace ReversiLibrary.GameModels
         public Board(Board board)
         {
         
-            boardChips = board.boardChips;
+            boardChips = new Dictionary<Point,Chip>(board.boardChips);
             teamColor = board.teamColor;
             opponentColor = board.opponentColor;
             teamColor = board.teamColor;
@@ -631,9 +631,8 @@ namespace ReversiLibrary.GameModels
         
         public void addChip(Point point, Chip chip)
         {
-
-
-            boardChips.Add(point, chip);  
+            
+            boardChips.Add(point, chip);
             instantiateMove(point.X, point.Y, chip.chipColor);
 
             if (ChipAdded != null)

@@ -68,6 +68,7 @@ namespace ReversiExe
             BoardEvauluation evalv = new BoardEvauluation(currentBoard);
             BoardEvauluation.Move move = evalv.bestMove(currentBoard, Color.Black, 1);
             System.Diagnostics.Debug.WriteLine("initiatied AI Thread");
+            
             board.addChip(move.point, new Chip(Color.Black, true));
         }
         
