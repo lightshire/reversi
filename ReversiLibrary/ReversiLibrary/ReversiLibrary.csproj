@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameModels\Board.cs" />
+    <Compile Include="GameModels\BoardEvauluation.cs" />
     <Compile Include="GameModels\Chip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

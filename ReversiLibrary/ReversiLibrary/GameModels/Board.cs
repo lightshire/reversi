@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Diagnostics;
+using System.Threading;
+
+
 
 namespace ReversiLibrary.GameModels
 {
@@ -21,6 +24,10 @@ namespace ReversiLibrary.GameModels
         public event ChipFlippedHandler ChipFlipped;
         public event AvailableMovesGeneratedHandler AvailableMovesGenerated;
 
+
+        private Thread AIMoveThread;
+
+
         public struct Direction
         {
             public const int up             = 1;
@@ -36,35 +43,78 @@ namespace ReversiLibrary.GameModels
 
         public static Board getInstance { get; set; }
         public Dictionary<Point, Chip> boardChips { get; set; }
+        
         public double headChance { get; set; }
         public double tailsChance { get; set; }
+        public double biasFactor { get; set; }
+
+        public int blackFrontierCount { get; set; }
+        public int whiteFrontierCount { get; set; }
+
+
         public bool initialState { get; set; }
         public Color teamColor { get; set; }
+        public Color opponentColor { get; set; }
+        
         
         public Board()
         {
             boardChips = new Dictionary<Point, Chip>();
             teamColor = Color.Black;
+            opponentColor = Color.Yellow;
+
             Board.getInstance = this;
             headChance = 0;
             tailsChance = 0;
             initialState = false;
+
+            blackFrontierCount = 0;
+            whiteFrontierCount = 0;
+
+            
         }
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
             this.boardChips = boardChips;
             this.teamColor = teamColor;
+            this.opponentColor = Color.White;
             headChance = 0;
             tailsChance = 0;
             initialState = false;
+
+            blackFrontierCount = 0;
+            whiteFrontierCount = 0;
+
+
         }
         public Board(Board board)
         {
             Board.getInstance = board;
             initialState = false;
+
+            blackFrontierCount = 0;
+            whiteFrontierCount = 0;
+
         }
 
+        public Board(Color myMove, Color oppMove, double bias)
+        {
+            teamColor = myMove;
+            opponentColor = oppMove;
+            biasFactor = bias;
+            boardChips = new Dictionary<Point, Chip>();
+            headChance = 0;
+            tailsChance = 0;
+            Board.getInstance = this;
+            initialState = false;
 
+            blackFrontierCount = 0;
+            whiteFrontierCount = 0;
+
+
+        }
+
+       
         //create initial state
 
         public void setUpBoard()
@@ -83,11 +133,6 @@ namespace ReversiLibrary.GameModels
 
             initialState = false;
         
-        }
-
-        public void declareMove()
-        {
-
         }
 
         public List<Point> availableMoves(Color color, Dictionary<Point, Chip> boardState)
@@ -424,7 +469,7 @@ namespace ReversiLibrary.GameModels
 
             if (!initialState)
             {
-                availableMoves(chip.chipColor, boardChips);
+                availableMoves(chip.chipColor == Color.Black ? Color.White : Color.Black, boardChips);
             }
             
         }

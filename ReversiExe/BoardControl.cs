@@ -15,6 +15,7 @@ namespace ReversiExe
        
         ChipControl[,] chipControls = new ChipControl[8, 8];
         Board board;
+        Color myMove, oppMove;
         public BoardControl()
         {
             InitializeComponent();
@@ -27,8 +28,30 @@ namespace ReversiExe
             
         }
 
+        public BoardControl(Color myMove, Color oppMove, double bias)
+        {
+            InitializeComponent();
+            board = new Board(myMove, oppMove, bias);
+            board.ChipAdded +=new ChipAddedHandler(board_ChipAdded);
+            board.ChipFlipped +=new ChipFlippedHandler(board_ChipFlipped);
+            board.AvailableMovesGenerated  +=new AvailableMovesGeneratedHandler(board_AvailableMovesGenerated);
+            createBoard();
+            board.setUpBoard();
+               
+        }
+
         void board_AvailableMovesGenerated(List<Point> points)
         {
+            //reset board
+
+            foreach (ChipControl control in chipControls)
+            {
+                if (control.BackColor != Color.Black && control.BackColor != Color.White)
+                {
+                    control.BackColor = Color.Green;
+                }
+            }
+
             foreach (Point point in points)
             {
                 chipControls[point.Y - 1, point.X - 1].BackColor = Color.Red;
