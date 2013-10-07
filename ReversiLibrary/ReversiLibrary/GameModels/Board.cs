@@ -5,6 +5,8 @@ using System.Text;
 using System.Drawing;
 using System.Diagnostics;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 
 
@@ -17,16 +19,11 @@ namespace ReversiLibrary.GameModels
     public delegate void AvailableMovesGeneratedHandler(List<Point> points);
     
 
-
     public class Board
     {
         public event ChipAddedHandler ChipAdded;
         public event ChipFlippedHandler ChipFlipped;
         public event AvailableMovesGeneratedHandler AvailableMovesGenerated;
-
-
-        private Thread AIMoveThread;
-
 
         public struct Direction
         {
@@ -50,11 +47,13 @@ namespace ReversiLibrary.GameModels
 
         public int blackFrontierCount { get; set; }
         public int whiteFrontierCount { get; set; }
+        public int stateScore { get; set; }
 
 
         public bool initialState { get; set; }
         public Color teamColor { get; set; }
         public Color opponentColor { get; set; }
+
         
         
         public Board()
@@ -63,13 +62,12 @@ namespace ReversiLibrary.GameModels
             teamColor = Color.Black;
             opponentColor = Color.Yellow;
 
-            Board.getInstance = this;
+           
             headChance = 0;
             tailsChance = 0;
             initialState = false;
 
-            blackFrontierCount = 0;
-            whiteFrontierCount = 0;
+            stateScore = 0;
 
             
         }
@@ -82,18 +80,21 @@ namespace ReversiLibrary.GameModels
             tailsChance = 0;
             initialState = false;
 
-            blackFrontierCount = 0;
-            whiteFrontierCount = 0;
-
+            stateScore = 0;
 
         }
         public Board(Board board)
         {
-            Board.getInstance = board;
+        
+            boardChips = board.boardChips;
+            teamColor = board.teamColor;
+            opponentColor = board.opponentColor;
+            teamColor = board.teamColor;
+            
             initialState = false;
 
-            blackFrontierCount = 0;
-            whiteFrontierCount = 0;
+            stateScore = 0;
+
 
         }
 
@@ -105,15 +106,31 @@ namespace ReversiLibrary.GameModels
             boardChips = new Dictionary<Point, Chip>();
             headChance = 0;
             tailsChance = 0;
-            Board.getInstance = this;
+           
             initialState = false;
 
-            blackFrontierCount = 0;
-            whiteFrontierCount = 0;
+            stateScore = 0;
+
 
 
         }
 
+        public void makeInstance()
+        {
+            Board.getInstance = this;
+        }
+        public  void computeRank(int mobilityScore)
+        {
+            int myChipCount = myChips().Count;
+            int opponentChipCount = opponentChips().Count;
+            int frontiers = FrontierChips(teamColor).Count;
+            int stableChipCount = StableChips(teamColor).Count;
+            int score = 0;
+
+            score =  (myChipCount - opponentChipCount) - frontiers + stableChipCount;
+
+            stateScore = score + mobilityScore;
+        }
        
         //create initial state
 
@@ -454,10 +471,167 @@ namespace ReversiLibrary.GameModels
             return chips;
         }
 
+
+
+        public Dictionary<Point, Chip> StableChips(Color color)
+        {
+            Dictionary<Point, Chip> mine = color == teamColor ? myChips() : opponentChips();
+            Dictionary<Point, Chip> chips = new Dictionary<Point, Chip>();
+            foreach (var chip in mine)
+            {
+                if (isStable(chip.Key))
+                {
+                    chips.Add(chip.Key, chip.Value);
+                }
+            }
+            return chips;
+
+        }
+
+        
+
+        public bool isStable(Point point)
+        {
+            bool _isStable = false;
+            if (isFrontier(point))
+            {
+                return false;
+            }
+
+            if (isBoundary(point) || 
+                inFilledRow(point))
+            {
+                return true;  
+            }
+
+            if (isStable(new Point(point.X - 1, point.Y)) &&
+                  isStable(new Point(point.X + 1, point.Y)) &&
+                  isStable(new Point(point.X, point.Y + 1)) &&
+                  isStable(new Point(point.X, point.Y - 1)))
+            {
+                return true;
+            }
+            return _isStable;
+        }
+
+        public bool isBoundary(Point point)
+        {
+            return  point == new Point(1, 1) || 
+                    point == new Point(1, 8) || 
+                    point == new Point(8, 1) || 
+                    point == new Point(8, 8) || 
+                    point == new Point(2, 1) ||
+                    point == new Point(1, 2) ||
+                    point == new Point(1, 7) ||
+                    point == new Point(2, 8) ||
+                    point == new Point(8, 7) ||
+                    point == new Point(7, 8);
+        }
+
+
+
+        public bool inFilledRow(Point point)
+        {
+            int row = point.Y;
+            int col = 1;
+            
+
+            for (col = 0; col < 8; col++)
+            {
+                Point cursor = new Point(col, row);
+                Point oppositeCursor = new Point(point.X, col);
+                if (!boardChips.ContainsKey(cursor) && !boardChips.ContainsKey(oppositeCursor))
+                {
+                    return false;    
+                }
+               
+            }
+            return true;
+        }
+
+        
+
+        public bool isFrontier(Point point)
+        {
+            bool isFrontier = false;
+            //check going top
+            Point cursor = new Point(point.X, point.Y - 1);
+            if (!boardChips.ContainsKey(cursor) && cursor.Y >= 1)
+            {
+                return true;
+            }
+
+            //check going bottom
+            cursor = new Point(point.X, point.Y + 1);
+            if (!boardChips.ContainsKey(cursor) && cursor.Y <= 8)
+            {
+                return true;
+            }
+
+            //check going left
+
+            cursor = new Point(point.X - 1, point.Y);
+            if (!boardChips.ContainsKey(cursor) && cursor.X >= 1)
+            {
+                return true;
+            }
+
+            //check going right
+            cursor = new Point(point.X + 1, point.Y);
+            if (!boardChips.ContainsKey(cursor) && cursor.X <= 8)
+            {
+                return true;
+            }
+
+            //check top-left
+            cursor = new Point(point.X - 1, point.Y - 1);
+            if (!boardChips.ContainsKey(cursor) && cursor.X >= 1 && cursor.Y >= 1)
+            {
+                return true;
+            }
+
+            //check top right
+            cursor = new Point(point.X + 1, point.Y - 1);
+            if (!boardChips.ContainsKey(cursor) && cursor.X <= 8 && cursor.Y >= 1)
+            {
+                return true;
+            }
+
+            //check bottom left
+            cursor = new Point(point.X - 1, point.Y + 1);
+            if (!boardChips.ContainsKey(cursor) && cursor.X >= 1 && cursor.Y <= 8)
+            {
+                return true;
+            }
+
+
+            //check bottom right
+            cursor = new Point(point.X + 1, point.Y + 1);
+            if (!boardChips.ContainsKey(cursor) && cursor.X <= 8 && cursor.Y <= 8)
+            {
+                return true;
+            }
+
+
+            return isFrontier;
+        }
+        public Dictionary<Point, Chip> FrontierChips(Color color)
+        {
+            Dictionary<Point, Chip> mine = color == teamColor ?  myChips() : opponentChips();
+            Dictionary<Point, Chip> frontiers = new Dictionary<Point, Chip>();
+            foreach (var chip in mine)
+            {
+                if (isFrontier(chip.Key))
+                {
+                    frontiers.Add(chip.Key, chip.Value);
+                }
+            }
+            return frontiers;
+        }
         
         public void addChip(Point point, Chip chip)
         {
-            
+
 
             boardChips.Add(point, chip);  
             instantiateMove(point.X, point.Y, chip.chipColor);
@@ -744,7 +918,26 @@ namespace ReversiLibrary.GameModels
         }
 
         #endregion
+        public T Clone<T>()
+        {
+            object item = this;
+            if (item != null)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                MemoryStream stream = new MemoryStream();
 
+                formatter.Serialize(stream, item);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                T result = (T)formatter.Deserialize(stream);
+
+                stream.Close();
+
+                return result;
+            }
+            else
+                return default(T);
+        }
         #region Check state Version 
         public void checkStatePoint(Point p, Color c, int direction, char coordinate)
         {

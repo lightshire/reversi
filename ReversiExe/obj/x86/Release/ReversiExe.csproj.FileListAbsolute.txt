@@ -11,3 +11,17 @@ C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\GenerateResource.re
 C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\GenerateResource.write.1.tlog
 C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.exe
 C:\Users\Sarah\Desktop\ReversiExe\ReversiExe\obj\x86\Release\ReversiExe.pdb
+D:\Documents\AI\reversi\ReversiExe\bin\Release\ReversiExe.exe
+D:\Documents\AI\reversi\ReversiExe\bin\Release\ReversiExe.pdb
+D:\Documents\AI\reversi\ReversiExe\bin\Release\ReversiLibrary.dll
+D:\Documents\AI\reversi\ReversiExe\bin\Release\ReversiLibrary.pdb
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.csprojResolveAssemblyReference.cache
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.BoardControl.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.ChipControl.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.InitialForm.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.MainForm.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.Properties.Resources.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.SubmitPositionForm.resources
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.csproj.GenerateResource.Cache
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.exe
+D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.pdb

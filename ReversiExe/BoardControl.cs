@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ReversiLibrary.GameModels;
+using System.Threading;
+
 
 namespace ReversiExe
 {
@@ -16,6 +18,8 @@ namespace ReversiExe
         ChipControl[,] chipControls = new ChipControl[8, 8];
         Board board;
         Color myMove, oppMove;
+        Thread AIMoveThread;
+
         public BoardControl()
         {
             InitializeComponent();
@@ -23,23 +27,50 @@ namespace ReversiExe
             board.ChipAdded += new ChipAddedHandler(board_ChipAdded);
             board.ChipFlipped += new ChipFlippedHandler(board_ChipFlipped);
             board.AvailableMovesGenerated += new AvailableMovesGeneratedHandler(board_AvailableMovesGenerated);
+            board.makeInstance();
             createBoard();
             board.setUpBoard();
+
+            inistiateAIThread();
             
+
         }
 
         public BoardControl(Color myMove, Color oppMove, double bias)
         {
+            this.myMove = myMove;
+            this.oppMove = oppMove;
+
             InitializeComponent();
             board = new Board(myMove, oppMove, bias);
             board.ChipAdded +=new ChipAddedHandler(board_ChipAdded);
             board.ChipFlipped +=new ChipFlippedHandler(board_ChipFlipped);
             board.AvailableMovesGenerated  +=new AvailableMovesGeneratedHandler(board_AvailableMovesGenerated);
+            board.makeInstance();
             createBoard();
             board.setUpBoard();
+
+            inistiateAIThread();
                
         }
 
+        void createAIThread()
+        {
+            BoardEvauluation evaluation = new BoardEvauluation(new Board(board));
+            AIMoveThread = new Thread(inistiateAIThread);
+            AIMoveThread.Start();
+
+        }
+        void inistiateAIThread()
+        {
+            Board currentBoard = board;
+
+            BoardEvauluation evalv = new BoardEvauluation(currentBoard);
+            BoardEvauluation.Move move = evalv.bestMove(currentBoard, Color.Black, 1);
+            System.Diagnostics.Debug.WriteLine("initiatied AI Thread");
+            board.addChip(move.point, new Chip(Color.Black, true));
+        }
+        
         void board_AvailableMovesGenerated(List<Point> points)
         {
             //reset board
@@ -66,7 +97,8 @@ namespace ReversiExe
 
         void board_ChipAdded(Point point, Chip chip)
         {
-            chipControls[point.Y-1, point.X-1].BackColor = chip.chipColor;
+            if(point != new Point(0, 0))
+                chipControls[point.Y-1, point.X-1].BackColor = chip.chipColor;
             
         }
 
