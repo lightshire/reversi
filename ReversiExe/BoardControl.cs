@@ -49,7 +49,7 @@ namespace ReversiExe
             board.makeInstance();
             createBoard();
             board.setUpBoard();
-
+              
             createAIThread();
                
         }

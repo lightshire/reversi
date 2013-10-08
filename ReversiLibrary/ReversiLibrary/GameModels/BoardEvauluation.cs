@@ -43,14 +43,14 @@ namespace ReversiLibrary.GameModels
             List<Point> availableMoves = new List<Point>();
             //get available moves so error handling will be limited.
 
-            if (initialMove)
-            {
-                availableMoves = board.availableMoves(color, board.boardChips);
-            }
-            else
-            {
+            //if (initialMove)
+            //{
+            //    availableMoves = board.availableMoves(color, board.boardChips);
+            //}
+            //else
+            //{
                 availableMoves = board.availableMoves(color == Color.Black ? Color.White : Color.Black, board.boardChips);
-            }
+            //}
             
             
             foreach (Point _point in availableMoves)
