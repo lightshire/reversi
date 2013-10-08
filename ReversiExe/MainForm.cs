@@ -78,7 +78,27 @@ namespace ReversiExe
 
         }
 
+<<<<<<< HEAD
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //List<Point> headsAvailableMove = availableMoves();
+
+            if (coin != "")
+            { 
+                //??
+            }
+            SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
+            form.ShowDialog();
+           
+           
+
+            btnOppMove.Enabled = true;
+            btnYourMove.Enabled = false;
+            
+        }
+=======
        
+>>>>>>> 390dbad32cf9993c552f6e75c7f7b18386d7148e
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {

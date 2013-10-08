@@ -21,7 +21,8 @@ namespace ReversiExe
         Thread AIMoveThread;
         int numMyChips;
         int numOppChips;
-  
+
+        static Board currentState;
 
         public BoardControl()
         {
@@ -35,8 +36,8 @@ namespace ReversiExe
             board.setUpBoard();
 
             createAIThread();
-            
 
+           
         }
 
         public BoardControl(Color myMove, Color oppMove, double bias)
@@ -52,7 +53,7 @@ namespace ReversiExe
             board.makeInstance();
             createBoard();
             board.setUpBoard();
-              
+
             createAIThread();
                
         }
@@ -67,12 +68,12 @@ namespace ReversiExe
         void inistiateAIThread()
         {
             Board currentBoard = new Board(board);
-            Board _board = new Board(currentBoard);
-            _board.boardChips = new Dictionary<Point, Chip>(board.boardChips);
+           
+
             BoardEvauluation evalv = new BoardEvauluation(currentBoard);
             BoardEvauluation.Move move = evalv.bestMove(currentBoard, Color.Black, 1, true);
             System.Diagnostics.Debug.WriteLine("initiatied AI Thread");
-            board.boardChips = new Dictionary<Point, Chip>(_board.boardChips);
+            
 
             board.addChip(move.point, new Chip(Color.Black, true));
 

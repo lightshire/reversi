@@ -6,6 +6,7 @@ using System.Drawing;
 
 namespace ReversiLibrary.GameModels
 {
+    
     public class Chip
     {
         public Color chipColor { get; set; }
@@ -33,5 +34,10 @@ namespace ReversiLibrary.GameModels
             this.chipColor = color;
             this.state = state;
         }
+
+        
+
+
+
     }
 }
