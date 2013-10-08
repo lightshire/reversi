@@ -19,6 +19,9 @@ namespace ReversiExe
         Board board;
         Color myMove, oppMove;
         Thread AIMoveThread;
+        int numMyChips;
+        int numOppChips;
+  
 
         public BoardControl()
         {
@@ -96,6 +99,11 @@ namespace ReversiExe
         {
             //MessageBox.Show("Testing");
             chipControls[point.Y - 1, point.X - 1].BackColor = chip.chipColor;
+
+            numMyChips = board.myChips().Count;
+            numOppChips = board.opponentChips().Count;
+           // yourCtr.Text = numMyChips.ToString();
+           // oppCtr.Text = numOppChips.ToString();
         }
 
         void board_ChipAdded(Point point, Chip chip)
