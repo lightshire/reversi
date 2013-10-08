@@ -22,6 +22,13 @@ namespace ReversiExe
         int numOppChips;
         Board board;
 
+        private InitialForm getColor;
+
+        private void getOtherColor {
+        
+      //  label21.Text = getColor.gettextColor.Text;
+        }
+
         public MainForm(String yColor, double bias)
         {
             boardControl = new BoardControl();
@@ -42,13 +49,13 @@ namespace ReversiExe
             {
                 yourColor = Color.Black;
                 oppColor = Color.White;
-                btnOppMove.Enabled = false;
+                btnOppMove.Enabled = true;
             }
             else
             {
                 yourColor = Color.White;
                 oppColor = Color.Black;
-                btnYourMove.Enabled = false;
+              
             }
         }
 
@@ -66,7 +73,7 @@ namespace ReversiExe
                 }
 
                 btnOppMove.Enabled = false;
-                btnYourMove.Enabled = true;
+                
 
                 numMyChips = board.myChips().Count;
                 numOppChips = board.opponentChips().Count;
@@ -78,26 +85,7 @@ namespace ReversiExe
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //List<Point> headsAvailableMove = availableMoves();
-
-            if (coin != "")
-            { 
-                //??
-            }
-            SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
-            form.ShowDialog();
-            numMyChips = board.myChips().Count;
-            numOppChips = board.opponentChips().Count;
-            yourCtr.Text = numMyChips.ToString();
-            oppCtr.Text = numOppChips.ToString();
-           
-
-            btnOppMove.Enabled = true;
-            btnYourMove.Enabled = false;
-            
-        }
+       
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -112,6 +100,16 @@ namespace ReversiExe
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
         }
 
 

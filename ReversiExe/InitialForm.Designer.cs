@@ -33,6 +33,8 @@
             this.textColor = new System.Windows.Forms.ComboBox();
             this.textBias = new System.Windows.Forms.ComboBox();
             this.btnOK = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +63,7 @@
             "White"});
             this.textColor.Location = new System.Drawing.Point(107, 64);
             this.textColor.Name = "textColor";
-            this.textColor.Size = new System.Drawing.Size(129, 21);
+            this.textColor.Size = new System.Drawing.Size(145, 21);
             this.textColor.TabIndex = 4;
             // 
             // textBias
@@ -81,13 +83,13 @@
             "1"});
             this.textBias.Location = new System.Drawing.Point(107, 123);
             this.textBias.Name = "textBias";
-            this.textBias.Size = new System.Drawing.Size(129, 21);
+            this.textBias.Size = new System.Drawing.Size(145, 21);
             this.textBias.TabIndex = 5;
             // 
             // btnOK
             // 
             this.btnOK.AccessibleDescription = "";
-            this.btnOK.Location = new System.Drawing.Point(97, 188);
+            this.btnOK.Location = new System.Drawing.Point(137, 185);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(115, 34);
             this.btnOK.TabIndex = 6;
@@ -95,11 +97,35 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(48, 178);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(56, 17);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Heads";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(48, 202);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(47, 17);
+            this.radioButton2.TabIndex = 8;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Tails";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // InitialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 281);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.textBias);
             this.Controls.Add(this.textColor);
@@ -119,5 +145,7 @@
         private System.Windows.Forms.ComboBox textColor;
         private System.Windows.Forms.ComboBox textBias;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

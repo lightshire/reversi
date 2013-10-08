@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOppMove = new System.Windows.Forms.Button();
-            this.btnYourMove = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,10 +49,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.yourCtr = new System.Windows.Forms.Label();
             this.oppCtr = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             // 
             // btnOppMove
             // 
-            this.btnOppMove.Location = new System.Drawing.Point(12, 2);
+            this.btnOppMove.Location = new System.Drawing.Point(23, 2);
             this.btnOppMove.Name = "btnOppMove";
             this.btnOppMove.Size = new System.Drawing.Size(107, 41);
             this.btnOppMove.TabIndex = 1;
@@ -75,20 +77,10 @@
             this.btnOppMove.UseVisualStyleBackColor = true;
             this.btnOppMove.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnYourMove
-            // 
-            this.btnYourMove.Location = new System.Drawing.Point(125, 2);
-            this.btnYourMove.Name = "btnYourMove";
-            this.btnYourMove.Size = new System.Drawing.Size(110, 41);
-            this.btnYourMove.TabIndex = 2;
-            this.btnYourMove.Text = "Your Move";
-            this.btnYourMove.UseVisualStyleBackColor = true;
-            this.btnYourMove.Click += new System.EventHandler(this.button2_Click);
-            // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(278, 2);
+            this.radioButton1.Location = new System.Drawing.Point(140, 2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(54, 17);
             this.radioButton1.TabIndex = 3;
@@ -100,7 +92,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(278, 26);
+            this.radioButton2.Location = new System.Drawing.Point(140, 26);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(43, 17);
             this.radioButton2.TabIndex = 4;
@@ -266,24 +258,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statistics";
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(41, 27);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "White:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(41, 55);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 13);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "Black:";
-            // 
             // yourCtr
             // 
             this.yourCtr.AutoSize = true;
@@ -302,11 +276,59 @@
             this.oppCtr.TabIndex = 2;
             this.oppCtr.Text = "0";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(41, 55);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(37, 13);
+            this.label18.TabIndex = 1;
+            this.label18.Text = "Black:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(41, 27);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(38, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "White:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(350, 16);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(58, 13);
+            this.label19.TabIndex = 22;
+            this.label19.Text = "Playing as:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(414, 16);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(0, 13);
+            this.label20.TabIndex = 23;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(414, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(16, 13);
+            this.label21.TabIndex = 24;
+            this.label21.Text = "...";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 500);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
@@ -326,7 +348,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.btnYourMove);
             this.Controls.Add(this.btnOppMove);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -336,6 +357,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -347,7 +369,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnOppMove;
-        private System.Windows.Forms.Button btnYourMove;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label1;
@@ -371,6 +392,9 @@
         private System.Windows.Forms.Label oppCtr;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
     }
 }
 
