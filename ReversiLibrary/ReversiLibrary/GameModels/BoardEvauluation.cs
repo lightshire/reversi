@@ -36,6 +36,14 @@ namespace ReversiLibrary.GameModels
             currentBoard = board;
         }
 
+        public Move bestMoveWithoutFlip(Board board, Color color, int depth, bool initialMove)
+        {
+            Move bestMove = new Move();
+
+            return bestMove;
+            initialMove = false;
+        }
+
         public Move bestMove(Board board, Color color, int depth, bool initialMove)
         {
 
@@ -82,7 +90,8 @@ namespace ReversiLibrary.GameModels
                 {
                     if (!endGame)
                     {
-                        newBoard.computeRank(availableMoves.Count - opponentMoves);
+                        int posAdv = positionalAdvantage.positions[move.point];
+                        newBoard.computeRank(availableMoves.Count - opponentMoves + (3*posAdv));
                         move.score = newBoard.stateScore;
 
                     }
@@ -110,3 +119,4 @@ namespace ReversiLibrary.GameModels
         }
     }
 }
+    

@@ -7,6 +7,8 @@ using System.Drawing;
 namespace ReversiLibrary.GameModels
 {
     
+    
+
     public class Chip : ICloneable
     {
         public Color chipColor = Color.Black;

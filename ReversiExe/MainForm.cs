@@ -55,7 +55,7 @@ namespace ReversiExe
 
         private void button1_Click(object sender, EventArgs e)
         {
-           if (radioButton1.Checked = false || radioButton2.Checked == false) {
+           if (radioButton1.Checked = false && radioButton2.Checked == false) {
                 MessageBox.Show("Select Heads or Tails First!!! The Default is Heads");
             
             }

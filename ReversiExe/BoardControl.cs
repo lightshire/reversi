@@ -54,7 +54,8 @@ namespace ReversiExe
             createBoard();
             board.setUpBoard();
 
-            createAIThread();
+            if(myMove == Color.Black)
+                createAIThread();
                
         }
 
@@ -74,11 +75,11 @@ namespace ReversiExe
            
 
             BoardEvauluation evalv = new BoardEvauluation(currentBoard);
-            BoardEvauluation.Move move = evalv.bestMove(currentBoard, Color.Black, 1, true);
+            BoardEvauluation.Move move = evalv.bestMove(currentBoard, myMove, 1, true);
             System.Diagnostics.Debug.WriteLine("initiatied AI Thread");
             
 
-            board.addChip(move.point, new Chip(Color.Black, true));
+            board.addChip(move.point, new Chip(myMove, true));
 
             if (AIMoveThread != null && AIMoveThread.ThreadState != ThreadState.Aborted)
             {
@@ -148,6 +149,7 @@ namespace ReversiExe
                     control.Location    = new Point(initialWidth, initialHeight);
                     control.BackColor   = Color.Green;
                     chipControls[i, j]  = control;
+                   
                     this.Controls.Add(chipControls[i, j]);
                     initialWidth += 50;
                     if (initialWidth == 400)
@@ -159,5 +161,7 @@ namespace ReversiExe
                 }
             }
         }
+
+     
     }
 }

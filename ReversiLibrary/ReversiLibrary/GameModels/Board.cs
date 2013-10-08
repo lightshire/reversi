@@ -138,7 +138,7 @@ namespace ReversiLibrary.GameModels
             int myChipCount = myChips().Count;
             int opponentChipCount = opponentChips().Count;
             int frontiers = FrontierChips(teamColor).Count;
-            int stableChipCount = StableChips(teamColor).Count;
+            int stableChipCount = 0;
             int score = 0;
 
             score =  (myChipCount - opponentChipCount) - frontiers + stableChipCount;
@@ -160,7 +160,7 @@ namespace ReversiLibrary.GameModels
          
             addChip(new Point(4, 5), new Chip(Color.Black, true));
 
-            availableMoves(this.teamColor, boardChips);
+            availableMoves(Color.Black, boardChips);
 
             initialState = false;
         
@@ -182,7 +182,7 @@ namespace ReversiLibrary.GameModels
                 int y = 0;
                 bool endFound = false;
                 bool opponentFound = false;
-
+                bool friendlyFound = false;
 
                 #region going to top
                 end = 1;
@@ -192,6 +192,10 @@ namespace ReversiLibrary.GameModels
                 {
                     start--;
                     Point cursor = new Point(state.Key.X, start);
+                    if (start == 0)
+                    {
+                        break;
+                    }
                     if (boardChips.ContainsKey(cursor))
                     {
                         if (boardChips[cursor].chipColor != color)
@@ -199,8 +203,15 @@ namespace ReversiLibrary.GameModels
                             opponentFound = true;
                             //continue;
                         }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
+                        }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -218,11 +229,12 @@ namespace ReversiLibrary.GameModels
                 start = state.Key.Y;
                 endFound = false;
                 opponentFound = false;
-
+                friendlyFound = false;
                 while (!endFound)
                 {
                     start++;
                     Point cursor = new Point(state.Key.X, start);
+                    if (start >= 9) break;
                     if (boardChips.ContainsKey(cursor))
                     {
                         if (boardChips[cursor].chipColor != color)
@@ -230,8 +242,15 @@ namespace ReversiLibrary.GameModels
                             opponentFound = true;
                             //continue;
                         }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
+                        }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -248,6 +267,7 @@ namespace ReversiLibrary.GameModels
                 #region going left
                 endFound = false;
                 opponentFound = false;
+                friendlyFound = false;
                 start = state.Key.X;
                 end = 1;
 
@@ -255,6 +275,7 @@ namespace ReversiLibrary.GameModels
                 {
                     start--;
                     Point cursor = new Point(start, state.Key.Y);
+                    if (start <= 0) break;
                     if (boardChips.ContainsKey(cursor))
                     {
                         if (boardChips[cursor].chipColor != color)
@@ -262,8 +283,16 @@ namespace ReversiLibrary.GameModels
                             opponentFound = true;
                             //continue;
                         }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
+                        }
+                        
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -280,6 +309,7 @@ namespace ReversiLibrary.GameModels
                 #region going right
                 endFound = false;
                 opponentFound = false;
+                friendlyFound = false;
                 start = state.Key.X;
                 end = 8;
 
@@ -287,6 +317,7 @@ namespace ReversiLibrary.GameModels
                 {
                     start++;
                     Point cursor = new Point(start, state.Key.Y);
+                    if (start >= 9) break;
                     if (boardChips.ContainsKey(cursor))
                     {
                         if (boardChips[cursor].chipColor != color)
@@ -294,8 +325,15 @@ namespace ReversiLibrary.GameModels
                             opponentFound = true;
                             //continue;
                         }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
+                        }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -314,6 +352,7 @@ namespace ReversiLibrary.GameModels
                 
                 endFound = false;
                 opponentFound = false;
+                friendlyFound = false;
 
                 x = state.Key.X;
                 y = state.Key.Y;
@@ -322,6 +361,7 @@ namespace ReversiLibrary.GameModels
                 {
                     x--;
                     y--;
+                    if (x <= 0 || y <= 0) break;
                     Point cursor = new Point(x, y);
                     if (boardChips.ContainsKey(cursor))
                     {
@@ -329,9 +369,17 @@ namespace ReversiLibrary.GameModels
                         {
                             opponentFound = true;
                             //continue;
+
+                        }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
                         }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -348,14 +396,18 @@ namespace ReversiLibrary.GameModels
                 #region top right
                 endFound = false;
                 opponentFound = false;
+                friendlyFound = false;
 
                 x = state.Key.X;
                 y = state.Key.Y;
 
+                
                 while (!endFound)
                 {
                     x++;
                     y--;
+
+                    if (x >= 9 || y <= 0) break;
                     Point cursor = new Point(x, y);
                     if (boardChips.ContainsKey(cursor))
                     {
@@ -363,9 +415,17 @@ namespace ReversiLibrary.GameModels
                         {
                             opponentFound = true;
                             //continue;
+
+                        }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
                         }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -381,7 +441,7 @@ namespace ReversiLibrary.GameModels
                 #region bottom left
                 endFound = false;
                 opponentFound = false;
-
+                friendlyFound = false;
                 x = state.Key.X;
                 y = state.Key.Y;
 
@@ -389,6 +449,8 @@ namespace ReversiLibrary.GameModels
                 {
                     x--;
                     y++;
+
+                    if (x <= 0 || y >= 9) break;
                     Point cursor = new Point(x, y);
                     if (boardChips.ContainsKey(cursor))
                     {
@@ -397,8 +459,15 @@ namespace ReversiLibrary.GameModels
                             opponentFound = true;
                             //continue;
                         }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
+                        }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -414,6 +483,7 @@ namespace ReversiLibrary.GameModels
                 #region bottom right
                 endFound = false;
                 opponentFound = false;
+                friendlyFound = false;
 
                 x = state.Key.X;
                 y = state.Key.Y;
@@ -422,6 +492,8 @@ namespace ReversiLibrary.GameModels
                 {
                     x++;
                     y++;
+
+                    if (x >= 9 || y >= 9) break;
                     Point cursor = new Point(x, y);
                     if (boardChips.ContainsKey(cursor))
                     {
@@ -430,8 +502,15 @@ namespace ReversiLibrary.GameModels
                             opponentFound = true;
                             //continue;
                         }
+                        else
+                        {
+                            if (opponentFound)
+                            {
+                                friendlyFound = true;
+                            }
+                        }
                     }
-                    else if (opponentFound && !boardChips.ContainsKey(cursor))
+                    else if (opponentFound && !boardChips.ContainsKey(cursor) && !friendlyFound)
                     {
                         points.Add(cursor);
                         endFound = true;
@@ -517,13 +596,15 @@ namespace ReversiLibrary.GameModels
             {
                 return true;  
             }
-
-            if (isStable(new Point(point.X - 1, point.Y)) &&
-                  isStable(new Point(point.X + 1, point.Y)) &&
-                  isStable(new Point(point.X, point.Y + 1)) &&
-                  isStable(new Point(point.X, point.Y - 1)))
+            if (point.X > 0 && point.X <= 8 && point.Y > 0 && point.Y <= 8)
             {
-                return true;
+                if (isStable(new Point(point.X - 1, point.Y)) &&
+                      isStable(new Point(point.X + 1, point.Y)) &&
+                      isStable(new Point(point.X, point.Y + 1)) &&
+                      isStable(new Point(point.X, point.Y - 1)))
+                {
+                    return true;
+                }
             }
             return _isStable;
         }
@@ -963,7 +1044,7 @@ namespace ReversiLibrary.GameModels
                 }
                 else
                 {
-                    checkCoords = start < end;
+                    checkCoords = start <= end;
                 }
                 
 
