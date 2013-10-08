@@ -21,7 +21,7 @@ namespace ReversiExe
         int numMyChips;
         int numOppChips;
         Board board;
-   
+
         public MainForm(String yColor, double bias)
         {
             
@@ -60,33 +60,32 @@ namespace ReversiExe
             
             }
             // insufficient error handling
-            try
-                {
-            if (coin!="")
-            {//first move
-                SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
-                form.ShowDialog();
+           try
+           {
+               if (coin != "")
+               {//first move
+                   SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
+                   form.ShowDialog();
 
-                if (coin == "tails")
-                {//second move
-                    SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
-                    form2.ShowDialog();
-                }
+                   if (coin == "tails")
+                   {//second move
+                       SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
+                       form2.ShowDialog();
+                   }
 
-                btnOppMove.Enabled = false;
-                
-                    numMyChips = board.myChips().Count;
-                    numOppChips = board.opponentChips().Count;
-                    yourCtr.Text = numMyChips.ToString();
-                    oppCtr.Text = numOppChips.ToString();
-               
-            }
-  }
-                catch (Exception y) {
-                       MessageBox.Show("Invalid Input","",MessageBoxButtons.OK);
-                    
-                
-                }
+
+                   boardControl.createAIThread();
+
+
+
+               }
+           }
+           catch (Exception y)
+           {
+               MessageBox.Show("Invalid Input", "", MessageBoxButtons.OK);
+
+
+           }
           
 
         }

@@ -7,11 +7,11 @@ using System.Drawing;
 namespace ReversiLibrary.GameModels
 {
     
-    public class Chip
+    public class Chip : ICloneable
     {
-        public Color chipColor { get; set; }
-        public bool state { get; set; }
-        public bool empty { get; set; }
+        public Color chipColor = Color.Black;
+        public bool state = false;
+        public bool empty = false;
 
         public Chip()
         {
@@ -26,6 +26,11 @@ namespace ReversiLibrary.GameModels
             this.state = state;
             empty = false;
 
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
 
         public void changeState(Color color, bool state)
