@@ -25,3 +25,5 @@ D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.SubmitPositionForm
 D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.csproj.GenerateResource.Cache
 D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.exe
 D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.pdb
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.exe
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.pdb
