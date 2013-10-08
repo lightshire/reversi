@@ -24,15 +24,14 @@ namespace ReversiExe
 
         public MainForm(String yColor, double bias)
         {
-            
+             numMyChips = 0;
+            numOppChips = 0;
+
             InitializeComponent();
             coin = "";
-            
-
             label21.Text = InitialForm.myColor.ToString();
-            
-            numMyChips = 2;
-            numOppChips = 2;
+
+           
             yourCtr.Text = numMyChips.ToString();
             oppCtr.Text = numOppChips.ToString();
 
@@ -42,21 +41,34 @@ namespace ReversiExe
                 yourColor = Color.Black;
                 oppColor = Color.White;
                 btnOppMove.Enabled = true;
+
+                
+
             }
             else
             {
                 yourColor = Color.White;
                 oppColor = Color.Black;
+
+             
               
             }
             boardControl = new BoardControl(yourColor, oppColor, biasFactor);
             panel1.Controls.Add(boardControl);
 
             board = Board.getInstance;
+
+         
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            numMyChips = board.myChips().Count;
+            numOppChips = board.opponentChips().Count;
+
+            yourCtr.Text = numMyChips.ToString();
+            oppCtr.Text = numOppChips.ToString();
+
            if (!radioButton1.Checked && !radioButton2.Checked) {
                 MessageBox.Show("Select Heads or Tails First!!! The Default is Heads");
             }
@@ -66,25 +78,68 @@ namespace ReversiExe
                if (coin != "")
                {//first move
                    SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
+
+
+                   yourCtr.Text = numMyChips.ToString();
+                   oppCtr.Text = numOppChips.ToString();
+
                    if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                    {
+
+                       numMyChips = board.myChips().Count;
+                       numOppChips = board.opponentChips().Count;
+                       yourCtr.Text = numMyChips.ToString();
+                       oppCtr.Text = numOppChips.ToString();
 
                        if (coin == "tails")
                        {//second move
                            SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
                            boardControl.board.getAvailableAdjacentMoves(oppColor);
+
+
+                           numMyChips = board.myChips().Count;
+                           numOppChips = board.opponentChips().Count;
+                           yourCtr.Text = numMyChips.ToString();
+                           oppCtr.Text = numOppChips.ToString();
+
+
                            if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                            {
+
+                               numMyChips = board.myChips().Count;
+                               numOppChips = board.opponentChips().Count;
+                               yourCtr.Text = numMyChips.ToString();
+                               oppCtr.Text = numOppChips.ToString();
+
                                DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                if (result == DialogResult.Yes)
                                {
+                                 
+
+                                   numMyChips = board.myChips().Count;
+                                   numOppChips = board.opponentChips().Count;
+                                   yourCtr.Text = numMyChips.ToString();
+                                   oppCtr.Text = numOppChips.ToString();
+
                                    boardControl.createAIThread();
                                    BoardControl.isHeads = true;
+                                  
+
                                }
                                else
                                {
+                                
+
+
+                                   numMyChips = board.myChips().Count;
+                                   numOppChips = board.opponentChips().Count;
+                                   yourCtr.Text = numMyChips.ToString();
+                                   oppCtr.Text = numOppChips.ToString();
+
+
                                    boardControl.createAIThread();
                                    BoardControl.isHeads = false;
+
                                }
                            }
 
@@ -94,13 +149,30 @@ namespace ReversiExe
                            DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                            if (result == DialogResult.Yes)
                            {
+
+                             
+                               numMyChips = board.myChips().Count;
+                               numOppChips = board.opponentChips().Count;
+                               yourCtr.Text = numMyChips.ToString();
+                               oppCtr.Text = numOppChips.ToString();
+
                                boardControl.createAIThread();
                                BoardControl.isHeads = true;
+
+                              
+
                            }
                            else
                            {
+                              
+                               numMyChips = board.myChips().Count;
+                               numOppChips = board.opponentChips().Count;
+                               yourCtr.Text = numMyChips.ToString();
+                               oppCtr.Text = numOppChips.ToString();
+
                                boardControl.createAIThread();
                                BoardControl.isHeads = false;
+
                            }
                        }
                    }
