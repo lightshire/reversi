@@ -66,13 +66,43 @@ namespace ReversiExe
                if (coin != "")
                {//first move
                    SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
-                   form.ShowDialog();
+                   if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                   {
 
-                   if (coin == "tails")
-                   {//second move
-                       SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
-                       boardControl.board.getAvailableAdjacentMoves(yourColor);
-                       form2.ShowDialog();
+                       if (coin == "tails")
+                       {//second move
+                           SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
+                           boardControl.board.getAvailableAdjacentMoves(oppColor);
+                           if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                           {
+                               DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                               if (result == DialogResult.Yes)
+                               {
+                                   boardControl.createAIThread();
+                                   BoardControl.isHeads = true;
+                               }
+                               else
+                               {
+                                   boardControl.createAIThread();
+                                   BoardControl.isHeads = false;
+                               }
+                           }
+
+                       }
+                       else
+                       {
+                           DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                           if (result == DialogResult.Yes)
+                           {
+                               boardControl.createAIThread();
+                               BoardControl.isHeads = true;
+                           }
+                           else
+                           {
+                               boardControl.createAIThread();
+                               BoardControl.isHeads = false;
+                           }
+                       }
                    }
 
                  
@@ -80,17 +110,7 @@ namespace ReversiExe
                    
 
 
-                   DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                   if (result == DialogResult.Yes)
-                   {
-                       boardControl.createAIThread();
-                       BoardControl.isHeads = true;
-                   }
-                   else
-                   {
-                       boardControl.createAIThread();
-                       BoardControl.isHeads = false;
-                   }
+                   
 
 
                }
