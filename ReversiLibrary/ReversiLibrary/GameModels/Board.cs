@@ -18,6 +18,7 @@ namespace ReversiLibrary.GameModels
     public delegate void ChipAddedHandler(Point point, Chip chip);
     public delegate void ChipFlippedHandler(Point point, Chip chip);
     public delegate void AvailableMovesGeneratedHandler(List<Point> points);
+    public delegate void AvailableAdjacentMovesGeneratedHandler(List<Point> points);
     
 
     public class Board : ICloneable
@@ -25,7 +26,8 @@ namespace ReversiLibrary.GameModels
         public event ChipAddedHandler ChipAdded;
         public event ChipFlippedHandler ChipFlipped;
         public event AvailableMovesGeneratedHandler AvailableMovesGenerated;
-            
+        public event AvailableAdjacentMovesGeneratedHandler AvailableAdjacentMovesGenerated;
+    
         public struct Direction
         {
             public const int up             = 1;
@@ -70,7 +72,110 @@ namespace ReversiLibrary.GameModels
 
             stateScore = 0;
 
-            
+            biasFactor = 0;
+        }
+
+        public List<Point> getAvailableAdjacentMoves(Color color)
+        {
+            List<Point> point = new List<Point>();
+            List<Point> _availableMoves = availableMoves(color, boardChips);
+            Dictionary<Point, Chip> _boardChips = boardChips;
+
+            foreach (var chip in _boardChips)
+            {
+                //cursor going up
+                Point cursor = new Point(chip.Key.X, chip.Key.Y - 1);
+
+                if (cursor.Y >= 1)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+                //cursor going down
+                cursor = new Point(chip.Key.X, chip.Key.Y + 1);
+
+                if (cursor.Y <= 8)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+                //cursor going right
+                cursor = new Point(chip.Key.X + 1, chip.Key.Y);
+                if (cursor.X <= 8)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+                //cursor going left
+                cursor = new Point(chip.Key.X - 1, chip.Key.Y);
+                if (cursor.X >= 1)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+               //cursor going top left
+                cursor = new Point(chip.Key.X - 1, chip.Key.Y - 1);
+                if (cursor.X >= 1 && cursor.Y >= 1)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+                //cursor going top right
+
+                cursor = new Point(chip.Key.X + 1, chip.Key.Y - 1);
+                if (cursor.X <= 8 && cursor.Y >= 1)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+                //cursor going bottom left
+
+                cursor = new Point(chip.Key.X - 1, chip.Key.Y + 1);
+                if (cursor.X >= 1 && cursor.Y <= 8)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+                //cursor goint bottom right
+                cursor = new Point(chip.Key.X + 1, chip.Key.Y + 1);
+                if (cursor.X <= 8 && cursor.Y <= 8)
+                {
+                    if (!_availableMoves.Contains(cursor) && !_boardChips.ContainsKey(cursor))
+                    {
+                        point.Add(cursor);
+                    }
+                }
+
+               
+            }
+
+            if (AvailableAdjacentMovesGenerated != null)
+            {
+                AvailableAdjacentMovesGenerated(point);
+            }
+
+            return point;
         }
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
@@ -86,6 +191,7 @@ namespace ReversiLibrary.GameModels
             initialState = false;
 
             stateScore = 0;
+            biasFactor = 0;
 
         }
         public Board(Board board)
@@ -102,7 +208,7 @@ namespace ReversiLibrary.GameModels
             initialState = false;
 
             stateScore = 0;
-
+            biasFactor = board.biasFactor;
 
         }
 
@@ -176,7 +282,6 @@ namespace ReversiLibrary.GameModels
             
             foreach (var state in chips)
             {
-                int end = 0;
                 int start = 0;
                 int x = 0;
                 int y = 0;
@@ -185,7 +290,7 @@ namespace ReversiLibrary.GameModels
                 bool friendlyFound = false;
 
                 #region going to top
-                end = 1;
+
                 start = state.Key.Y;
 
                 while (!endFound)
@@ -225,7 +330,6 @@ namespace ReversiLibrary.GameModels
                 #endregion
 
                 #region going to bottom
-                end = 8;
                 start = state.Key.Y;
                 endFound = false;
                 opponentFound = false;
@@ -269,7 +373,7 @@ namespace ReversiLibrary.GameModels
                 opponentFound = false;
                 friendlyFound = false;
                 start = state.Key.X;
-                end = 1;
+
 
                 while (!endFound)
                 {
@@ -311,7 +415,6 @@ namespace ReversiLibrary.GameModels
                 opponentFound = false;
                 friendlyFound = false;
                 start = state.Key.X;
-                end = 8;
 
                 while (!endFound)
                 {

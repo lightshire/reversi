@@ -15,7 +15,6 @@ namespace ReversiExe
         Color   playerColor;
         Board   board;
         bool    tf; //false if 1st move, true if 2nd move
-        MainForm mf;
 
 
         public SubmitPositionForm()

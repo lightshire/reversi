@@ -16,13 +16,13 @@ namespace ReversiExe
     {
        
         ChipControl[,] chipControls = new ChipControl[8, 8];
-        Board board;
+        public Board board;
         Color myMove, oppMove;
-        Thread AIMoveThread;
+        Thread AIMoveThread, AITailThread;
         int numMyChips;
         int numOppChips;
 
-        static Board currentState;
+        public static bool isHeads = false;
 
         public BoardControl()
         {
@@ -50,13 +50,44 @@ namespace ReversiExe
             board.ChipAdded +=new ChipAddedHandler(board_ChipAdded);
             board.ChipFlipped +=new ChipFlippedHandler(board_ChipFlipped);
             board.AvailableMovesGenerated  +=new AvailableMovesGeneratedHandler(board_AvailableMovesGenerated);
+            board.AvailableAdjacentMovesGenerated += new AvailableAdjacentMovesGeneratedHandler(board_AvailableAdjacentMovesGenerated);
             board.makeInstance();
             createBoard();
             board.setUpBoard();
 
-            if(myMove == Color.Black)
-                createAIThread();
-               
+            if (myMove == Color.Black)
+            {
+                DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    createAIThread();
+                    isHeads = true;
+                }
+                else
+                {
+                    createAIThread();
+                    isHeads = false;
+                }
+            }
+           
+        }
+
+        void board_AvailableAdjacentMovesGenerated(List<Point> points)
+        {
+            System.Diagnostics.Debug.WriteLine("Available Adjacent Moves Ran");
+            foreach (ChipControl control in chipControls)
+            {
+                if (control.BackColor != Color.Black && control.BackColor != Color.White)
+                {
+                    control.BackColor = Color.Green;
+                }
+            }
+
+            foreach (Point point in points)
+            {
+                if (point.X <= 8 && point.X >= 1 && point.Y <= 8 && point.Y >= 1)
+                    chipControls[point.Y - 1, point.X - 1].BackColor = Color.LightBlue;
+            }
         }
 
         public void createAIThread()
@@ -66,6 +97,33 @@ namespace ReversiExe
             AIMoveThread.Start();
 
         }
+        public void createAITailThread()
+        {
+            AITailThread = new Thread(instantiateTailThread);
+            AITailThread.Start();
+        }
+
+        public void instantiateTailThread()
+        {
+            Dictionary<Point, Chip> initialState = new Dictionary<Point, Chip>(board.boardChips);
+            Board currentBoard = new Board(board.boardChips.ToDictionary(entry => entry.Key, entry => (Chip)entry.Value.Clone()), board.teamColor);
+           
+
+            BoardEvauluation evalv = new BoardEvauluation(currentBoard);
+            BoardEvauluation.Move move = evalv.bestMoveWithoutFlip(currentBoard, myMove, 1, true);
+            System.Diagnostics.Debug.WriteLine("initiatied AI Tail Thread");
+            
+
+            board.addChip(move.point, new Chip(myMove, true));
+
+           
+            if (AITailThread != null && AITailThread.ThreadState != ThreadState.Aborted)
+            {
+                AITailThread.Abort(); //kill the thread afterwards
+
+            }
+        }
+        
         public void inistiateAIThread()
         {
             Dictionary<Point, Chip> initialState = new Dictionary<Point, Chip>(board.boardChips);
@@ -81,6 +139,10 @@ namespace ReversiExe
 
             board.addChip(move.point, new Chip(myMove, true));
 
+            if (!isHeads)
+            {
+                createAITailThread();
+            }
             if (AIMoveThread != null && AIMoveThread.ThreadState != ThreadState.Aborted)
             {
                 AIMoveThread.Abort(); //kill the thread afterwards
