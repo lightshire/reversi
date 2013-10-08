@@ -55,6 +55,13 @@ namespace ReversiExe
 
         private void button1_Click(object sender, EventArgs e)
         {
+           if (radioButton1.Checked = false || radioButton2.Checked == false) {
+                MessageBox.Show("Select Heads or Tails First!!! The Default is Heads");
+            
+            }
+            // insufficient error handling
+            try
+                {
             if (coin!="")
             {//first move
                 SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
@@ -67,38 +74,24 @@ namespace ReversiExe
                 }
 
                 btnOppMove.Enabled = false;
- 
-                numMyChips = board.myChips().Count;
-                numOppChips = board.opponentChips().Count;
-                yourCtr.Text = numMyChips.ToString();
-                oppCtr.Text = numOppChips.ToString();
+                
+                    numMyChips = board.myChips().Count;
+                    numOppChips = board.opponentChips().Count;
+                    yourCtr.Text = numMyChips.ToString();
+                    oppCtr.Text = numOppChips.ToString();
+               
             }
-
+  }
+                catch (Exception y) {
+                       MessageBox.Show("Invalid Input","",MessageBoxButtons.OK);
+                    
+                
+                }
           
 
         }
 
-<<<<<<< HEAD
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //List<Point> headsAvailableMove = availableMoves();
 
-            if (coin != "")
-            { 
-                //??
-            }
-            SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
-            form.ShowDialog();
-           
-           
-
-            btnOppMove.Enabled = true;
-            btnYourMove.Enabled = false;
-            
-        }
-=======
-       
->>>>>>> 390dbad32cf9993c552f6e75c7f7b18386d7148e
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {

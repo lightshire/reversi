@@ -10,6 +10,7 @@ using System.IO;
 
 
 
+
 namespace ReversiLibrary.GameModels
 {
 
@@ -630,10 +631,15 @@ namespace ReversiLibrary.GameModels
         
         public void addChip(Point point, Chip chip)
         {
+            try
+            {
+                boardChips.Add(point, chip);
+                instantiateMove(point.X, point.Y, chip.chipColor);
+            }
+            catch (Exception t) {
             
-            boardChips.Add(point, chip);
-            instantiateMove(point.X, point.Y, chip.chipColor);
-
+            
+            }
             if (ChipAdded != null)
             {
                 ChipAdded(point, chip);
