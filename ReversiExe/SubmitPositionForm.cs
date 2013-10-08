@@ -15,6 +15,7 @@ namespace ReversiExe
         Color   playerColor;
         Board   board;
         bool    tf; //false if 1st move, true if 2nd move
+        MainForm mf;
 
 
         public SubmitPositionForm()
@@ -45,10 +46,13 @@ namespace ReversiExe
                     Int32.TryParse(textBox1.Text, out x) &&
                     Int32.TryParse(textBox2.Text, out y))
                 {
+                    
                     Point p = new Point(x, y);
                     Chip chip = new Chip(playerColor, true);
 
                     board.addChip(p, chip);
+                    
+
                 }
             }
             else
@@ -64,6 +68,8 @@ namespace ReversiExe
                     Chip chip = new Chip(playerColor, true);
 
                     board.addChip(p, chip);
+                    
+
                 }
             }
             

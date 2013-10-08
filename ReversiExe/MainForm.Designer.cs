@@ -56,6 +56,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.PLAYER = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Row = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -321,11 +325,39 @@
             this.label21.Text = "...";
             this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PLAYER,
+            this.Column,
+            this.Row});
+            this.listView1.Location = new System.Drawing.Point(23, 205);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(200, 177);
+            this.listView1.TabIndex = 25;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // PLAYER
+            // 
+            this.PLAYER.Text = "Player";
+            this.PLAYER.Width = 67;
+            // 
+            // Column
+            // 
+            this.Column.Text = "Column";
+            // 
+            // Row
+            // 
+            this.Row.Text = "Row";
+            this.Row.Width = 69;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 500);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
@@ -395,6 +427,10 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader PLAYER;
+        private System.Windows.Forms.ColumnHeader Column;
+        private System.Windows.Forms.ColumnHeader Row;
     }
 }
 

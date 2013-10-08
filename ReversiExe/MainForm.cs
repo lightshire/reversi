@@ -27,7 +27,7 @@ namespace ReversiExe
             
             InitializeComponent();
             coin = "";
-            board = Board.getInstance;
+            
 
             label21.Text = InitialForm.myColor.ToString();
             
@@ -51,6 +51,8 @@ namespace ReversiExe
             }
             boardControl = new BoardControl(yourColor, oppColor, biasFactor);
             panel1.Controls.Add(boardControl);
+
+            board = Board.getInstance;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -72,11 +74,14 @@ namespace ReversiExe
                        SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
                        form2.ShowDialog();
                    }
-
-
+                 
                    boardControl.createAIThread();
 
-
+                   numMyChips = board.myChips().Count;
+                   numOppChips = board.opponentChips().Count;
+                   yourCtr.Text = numMyChips.ToString();
+                   oppCtr.Text = numOppChips.ToString();
+                   
 
                }
            }
@@ -86,8 +91,8 @@ namespace ReversiExe
 
 
            }
-          
-
+           radioButton1.Checked = false;
+           radioButton2.Checked = false;
         }
 
 
@@ -116,9 +121,5 @@ namespace ReversiExe
         {
 
         }
-
-
-
-
     }
 }
