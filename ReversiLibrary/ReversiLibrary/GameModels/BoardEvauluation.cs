@@ -12,7 +12,7 @@ namespace ReversiLibrary.GameModels
         public Board currentBoard;
         public Board gameBoard;
 
-        public int lookAheadDepth = 4;
+        public int lookAheadDepth = 3;
 
         public struct Move
         {
@@ -110,3 +110,4 @@ namespace ReversiLibrary.GameModels
         }
     }
 }
+    
