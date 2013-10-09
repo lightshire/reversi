@@ -45,11 +45,21 @@ namespace ReversiExe
                     Int32.TryParse(textBox1.Text, out x) &&
                     Int32.TryParse(textBox2.Text, out y))
                 {
+
                     Point p = new Point(x, y);
                     Chip chip = new Chip(playerColor, true);
 
                     board.addChip(p, chip);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
                 }
+                else
+                {
+                    MessageBox.Show("Please add data");
+                    return;
+                }
+                
+
             }
             else
             {
@@ -64,6 +74,13 @@ namespace ReversiExe
                     Chip chip = new Chip(playerColor, true);
 
                     board.addChip(p, chip);
+
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Please input data");
+                    return;
                 }
             }
             

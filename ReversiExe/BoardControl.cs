@@ -22,8 +22,6 @@ namespace ReversiExe
         int numMyChips;
         int numOppChips;
 
-        static Board currentState;
-
         public static bool isHeads = false;
 
         public BoardControl()
@@ -36,7 +34,7 @@ namespace ReversiExe
             board.makeInstance();
             createBoard();
             board.setUpBoard();
-
+            
             createAIThread();
 
            

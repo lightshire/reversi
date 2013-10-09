@@ -282,7 +282,6 @@ namespace ReversiLibrary.GameModels
             
             foreach (var state in chips)
             {
-                int end = 0;
                 int start = 0;
                 int x = 0;
                 int y = 0;
@@ -291,7 +290,7 @@ namespace ReversiLibrary.GameModels
                 bool friendlyFound = false;
 
                 #region going to top
-                end = 1;
+
                 start = state.Key.Y;
 
                 while (!endFound)
@@ -331,7 +330,6 @@ namespace ReversiLibrary.GameModels
                 #endregion
 
                 #region going to bottom
-                end = 8;
                 start = state.Key.Y;
                 endFound = false;
                 opponentFound = false;
@@ -375,7 +373,7 @@ namespace ReversiLibrary.GameModels
                 opponentFound = false;
                 friendlyFound = false;
                 start = state.Key.X;
-                end = 1;
+
 
                 while (!endFound)
                 {
@@ -417,7 +415,6 @@ namespace ReversiLibrary.GameModels
                 opponentFound = false;
                 friendlyFound = false;
                 start = state.Key.X;
-                end = 8;
 
                 while (!endFound)
                 {
