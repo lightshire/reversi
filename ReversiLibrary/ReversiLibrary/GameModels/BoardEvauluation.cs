@@ -55,13 +55,13 @@ namespace ReversiLibrary.GameModels
 
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
-                List<Point> opponentAvailableMoves = newBoard.getAvailableAdjacentMoves(color == Color.Black ? Color.White : Color.Black);
+                List<Point> opponentAvailableMoves = newBoard.getAvailableAdjacentMoves(color);
                 int opponentMoves = opponentAvailableMoves.Count;
 
                 if (opponentMoves == 0)
                 {
                     nextColor = nextColor == Color.Black ? Color.White : Color.Black;
-                    List<Point> oneStepLookAheadMoves = newBoard.getAvailableAdjacentMoves(nextColor == Color.Black ? Color.White : Color.Black);
+                    List<Point> oneStepLookAheadMoves = newBoard.getAvailableAdjacentMoves(nextColor);
                     if (oneStepLookAheadMoves.Count == 0)
                     {
                         endGame = true;
@@ -135,13 +135,13 @@ namespace ReversiLibrary.GameModels
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
 
-                List<Point> opponentAvailableMoves = newBoard.availableMoves(color == Color.Black ? Color.White : Color.Black, newBoard.boardChips);
+                List<Point> opponentAvailableMoves = newBoard.availableMoves(color, newBoard.boardChips);
                 int opponentMoves = opponentAvailableMoves.Count;
 
                 if (opponentMoves == 0)
                 {
                     nextColor = nextColor == Color.Black ? Color.White : Color.Black;
-                    List<Point> oneStepLookAheadMoves = newBoard.availableMoves(nextColor == Color.Black ? Color.White : Color.Black, newBoard.boardChips);
+                    List<Point> oneStepLookAheadMoves = newBoard.availableMoves(nextColor, newBoard.boardChips);
                     if (oneStepLookAheadMoves.Count == 0)
                     {
                         endGame = true;

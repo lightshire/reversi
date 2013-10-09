@@ -69,7 +69,7 @@ namespace ReversiExe
                    if (coin == "tails")
                    {//second move
                        SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
-                       boardControl.board.getAvailableAdjacentMoves(yourColor);
+                       boardControl.board.getAvailableAdjacentMoves(oppColor);
                        form2.ShowDialog();
                    }
 
