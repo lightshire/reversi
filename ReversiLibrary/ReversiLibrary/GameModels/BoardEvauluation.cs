@@ -89,7 +89,7 @@ namespace ReversiLibrary.GameModels
                 }
                 else
                 {
-                    Move lookAheadPoint = bestMove(newBoard, color, depth + 1, false);
+                    Move lookAheadPoint = bestMove(new Board(newBoard), color, depth + 1, false);
                     point.score = lookAheadPoint.score;
 
                     if (point.point.X <= 0)

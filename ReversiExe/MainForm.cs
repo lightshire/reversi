@@ -24,10 +24,7 @@ namespace ReversiExe
 
         private InitialForm getColor;
 
-        private void getOtherColor {
         
-      //  label21.Text = getColor.gettextColor.Text;
-        }
 
         public MainForm(String yColor, double bias)
         {
@@ -72,20 +69,16 @@ namespace ReversiExe
                     form2.ShowDialog();
                 }
 
-                btnOppMove.Enabled = false;
-                
 
-                numMyChips = board.myChips().Count;
-                numOppChips = board.opponentChips().Count;
-                yourCtr.Text = numMyChips.ToString();
-                oppCtr.Text = numOppChips.ToString();
+                boardControl.createAIThread();
+
+                
             }
 
           
 
         }
 
-<<<<<<< HEAD
         private void button2_Click(object sender, EventArgs e)
         {
             //List<Point> headsAvailableMove = availableMoves();
@@ -100,12 +93,10 @@ namespace ReversiExe
            
 
             btnOppMove.Enabled = true;
-            btnYourMove.Enabled = false;
+           
             
         }
-=======
-       
->>>>>>> 390dbad32cf9993c552f6e75c7f7b18386d7148e
+
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {

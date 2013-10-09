@@ -19,12 +19,12 @@ namespace ReversiLibrary.GameModels
     public delegate void AvailableMovesGeneratedHandler(List<Point> points);
     
 
-    public class Board
+    public class Board : ICloneable
     {
         public event ChipAddedHandler ChipAdded;
         public event ChipFlippedHandler ChipFlipped;
         public event AvailableMovesGeneratedHandler AvailableMovesGenerated;
-
+            
         public struct Direction
         {
             public const int up             = 1;
@@ -73,7 +73,11 @@ namespace ReversiLibrary.GameModels
         }
         public Board(Dictionary<Point, Chip> boardChips, Color teamColor)
         {
-            this.boardChips = boardChips.ToDictionary(entry => entry.Key, entry => entry.Value);
+            this.boardChips = new Dictionary<Point, Chip>();
+            foreach (var chip in boardChips)
+            {
+                this.boardChips.Add(chip.Key, chip.Value);
+            }
             this.teamColor = teamColor;
             this.opponentColor = Color.White;
             headChance = 0;
@@ -86,7 +90,11 @@ namespace ReversiLibrary.GameModels
         public Board(Board board)
         {
 
-            boardChips = board.boardChips.ToDictionary(entry => entry.Key, entry => entry.Value);
+            this.boardChips = new Dictionary<Point, Chip>();
+            foreach (var chip in board.boardChips)
+            {
+                this.boardChips.Add(chip.Key, chip.Value);
+            }
             teamColor = board.teamColor;
             opponentColor = board.opponentColor;
             
@@ -96,6 +104,12 @@ namespace ReversiLibrary.GameModels
 
 
         }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
 
         public Board(Color myMove, Color oppMove, double bias)
         {

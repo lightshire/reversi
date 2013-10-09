@@ -58,16 +58,19 @@ namespace ReversiExe
                
         }
 
-        void createAIThread()
+        public void createAIThread()
         {
            
             AIMoveThread = new Thread(inistiateAIThread);
             AIMoveThread.Start();
 
         }
-        void inistiateAIThread()
+        public void inistiateAIThread()
         {
-            Board currentBoard = new Board(board);
+            Dictionary<Point, Chip> initialState = new Dictionary<Point, Chip>(board.boardChips);
+           
+
+            Board currentBoard = new Board(board.boardChips.ToDictionary(entry => entry.Key, entry => (Chip)entry.Value.Clone()), board.teamColor);
            
 
             BoardEvauluation evalv = new BoardEvauluation(currentBoard);
@@ -98,7 +101,8 @@ namespace ReversiExe
 
             foreach (Point point in points)
             {
-                chipControls[point.Y - 1, point.X - 1].BackColor = Color.Red;
+                if(point.X <= 8 && point.X >= 1 && point.Y <= 8 && point.Y >= 1)
+                    chipControls[point.Y - 1, point.X - 1].BackColor = Color.Red;
             }
         }
 
@@ -106,6 +110,14 @@ namespace ReversiExe
         {
             //MessageBox.Show("Testing");
             chipControls[point.Y - 1, point.X - 1].BackColor = chip.chipColor;
+
+            foreach (ChipControl control in chipControls)
+            {
+                if (control.BackColor != Color.Black && control.BackColor != Color.White)
+                {
+                    control.BackColor = Color.Green;
+                }
+            }
 
             numMyChips = board.myChips().Count;
             numOppChips = board.opponentChips().Count;
