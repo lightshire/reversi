@@ -20,7 +20,7 @@ namespace ReversiExe
         String coin;
         int numMyChips;
         int numOppChips;
-        Board board;
+        public Board board;
 
         public MainForm(String yColor, double bias)
         {
@@ -55,9 +55,8 @@ namespace ReversiExe
 
         private void button1_Click(object sender, EventArgs e)
         {
-           if (radioButton1.Checked = false && radioButton2.Checked == false) {
+           if (!radioButton1.Checked && !radioButton2.Checked) {
                 MessageBox.Show("Select Heads or Tails First!!! The Default is Heads");
-            
             }
             // insufficient error handling
            try
@@ -70,13 +69,22 @@ namespace ReversiExe
                    if (coin == "tails")
                    {//second move
                        SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
+                       boardControl.board.getAvailableAdjacentMoves(yourColor);
                        form2.ShowDialog();
                    }
 
 
-                   boardControl.createAIThread();
-
-
+                   DialogResult result = MessageBox.Show("Is AI Move Heads?", "Heads or Tails", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   if (result == DialogResult.Yes)
+                   {
+                       boardControl.createAIThread();
+                       BoardControl.isHeads = true;
+                   }
+                   else
+                   {
+                       boardControl.createAIThread();
+                       BoardControl.isHeads = false;
+                   }
 
                }
            }

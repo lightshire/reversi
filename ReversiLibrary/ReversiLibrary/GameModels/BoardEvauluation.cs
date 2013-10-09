@@ -40,8 +40,67 @@ namespace ReversiLibrary.GameModels
         {
             Move bestMove = new Move();
 
+            List<Point> availableMoves = new List<Point>();
+            availableMoves = board.getAvailableAdjacentMoves(color);
+
+            foreach (Point point in availableMoves)
+            {
+                Move tempMove = new Move();
+                tempMove.point = point;
+                tempMove.score = 0;
+
+                Board newBoard = new Board(board);
+                Chip chip = new Chip(color, true);
+                newBoard.addChip(point, chip);
+
+                Color nextColor = color == Color.Black ? Color.White : Color.Black;
+                bool endGame = false;
+                List<Point> opponentAvailableMoves = newBoard.getAvailableAdjacentMoves(color == Color.Black ? Color.White : Color.Black);
+                int opponentMoves = opponentAvailableMoves.Count;
+
+                if (opponentMoves == 0)
+                {
+                    nextColor = nextColor == Color.Black ? Color.White : Color.Black;
+                    List<Point> oneStepLookAheadMoves = newBoard.getAvailableAdjacentMoves(nextColor == Color.Black ? Color.White : Color.Black);
+                    if (oneStepLookAheadMoves.Count == 0)
+                    {
+                        endGame = true;
+                    }
+                }
+
+                if (endGame || depth == lookAheadDepth)
+                {
+                    if (!endGame)
+                    {
+                        int posAdv = positionalAdvantage.positions[bestMove.point];
+                        newBoard.computeRank(availableMoves.Count - opponentMoves + (3 * posAdv));
+                        bestMove.score = newBoard.stateScore;
+
+                    }
+                }
+                else
+                {
+
+                }
+                {
+                    Move lookAheadPoint = this.bestMove(new Board(newBoard), color, depth + 1, false);
+                    bestMove.score = lookAheadPoint.score;
+
+                    if (bestMove.point.X <= 0)
+                    {
+                        bestMove = tempMove;
+                    }
+
+                    if (tempMove.score > bestMove.score)
+                    {
+                        bestMove = tempMove;
+                    }
+
+                }
+
+
+            }
             return bestMove;
-            initialMove = false;
         }
 
         public Move bestMove(Board board, Color color, int depth, bool initialMove)
@@ -69,10 +128,13 @@ namespace ReversiLibrary.GameModels
 
                 Board newBoard = new Board(board);
                 Chip chip = new Chip(color, true);
+
+               
                 newBoard.addChip(_point, chip);
 
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
+
                 List<Point> opponentAvailableMoves = newBoard.availableMoves(color == Color.Black ? Color.White : Color.Black, newBoard.boardChips);
                 int opponentMoves = opponentAvailableMoves.Count;
 
