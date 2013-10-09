@@ -88,10 +88,7 @@ namespace ReversiExe
             }
             SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
             form.ShowDialog();
-            numMyChips = board.myChips().Count;
-            numOppChips = board.opponentChips().Count;
-            yourCtr.Text = numMyChips.ToString();
-            oppCtr.Text = numOppChips.ToString();
+           
            
 
             btnOppMove.Enabled = true;

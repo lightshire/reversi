@@ -27,3 +27,15 @@ D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.exe
 D:\Documents\AI\reversi\ReversiExe\obj\x86\Release\ReversiExe.pdb
 C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.exe
 C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.pdb
+C:\Users\Kevin\reversi\ReversiExe\bin\Release\ReversiExe.exe
+C:\Users\Kevin\reversi\ReversiExe\bin\Release\ReversiExe.pdb
+C:\Users\Kevin\reversi\ReversiExe\bin\Release\ReversiLibrary.dll
+C:\Users\Kevin\reversi\ReversiExe\bin\Release\ReversiLibrary.pdb
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.BoardControl.resources
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.ChipControl.resources
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.InitialForm.resources
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.MainForm.resources
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.Properties.Resources.resources
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.SubmitPositionForm.resources
+C:\Users\Kevin\reversi\ReversiExe\obj\x86\Release\ReversiExe.csproj.GenerateResource.Cache

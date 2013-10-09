@@ -16,3 +16,4 @@ C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.
 C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.pdb
 C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.dll
 C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.pdb
+C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.csprojResolveAssemblyReference.cache
