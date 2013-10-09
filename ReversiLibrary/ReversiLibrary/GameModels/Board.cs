@@ -915,26 +915,7 @@ namespace ReversiLibrary.GameModels
         }
 
         #endregion
-        public T Clone<T>()
-        {
-            object item = this;
-            if (item != null)
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                MemoryStream stream = new MemoryStream();
 
-                formatter.Serialize(stream, item);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                T result = (T)formatter.Deserialize(stream);
-
-                stream.Close();
-
-                return result;
-            }
-            else
-                return default(T);
-        }
         #region Check state Version 
         public void checkStatePoint(Point p, Color c, int direction, char coordinate)
         {
