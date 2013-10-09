@@ -20,7 +20,7 @@ namespace ReversiLibrary.GameModels
         }
 
         public Chip(Color color, bool state)
-        {
+        { 
             this.chipColor = color;
             this.state = state;
             empty = false;
