@@ -18,6 +18,9 @@ namespace ReversiExe
         Color oppColor;
         double biasFactor;
         String coin;
+        int numMyChips;
+        int numOppChips;
+        Board board;
 
         public MainForm(String yColor, double bias)
         {
@@ -26,6 +29,13 @@ namespace ReversiExe
             coin = "";
 
             panel1.Controls.Add(boardControl);
+            board = Board.getInstance;
+            panel1.Controls.Add(boardControl);
+
+            numMyChips = 2;
+            numOppChips = 2;
+            yourCtr.Text = numMyChips.ToString();
+            oppCtr.Text = numOppChips.ToString();
 
             biasFactor = bias;
             if (yColor == "Black")
@@ -57,8 +67,15 @@ namespace ReversiExe
 
                 btnOppMove.Enabled = false;
                 btnYourMove.Enabled = true;
+
+                numMyChips = board.myChips().Count;
+                numOppChips = board.opponentChips().Count;
+                yourCtr.Text = numMyChips.ToString();
+                oppCtr.Text = numOppChips.ToString();
             }
-            
+
+          
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -71,6 +88,12 @@ namespace ReversiExe
             }
             SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
             form.ShowDialog();
+            numMyChips = board.myChips().Count;
+            numOppChips = board.opponentChips().Count;
+            yourCtr.Text = numMyChips.ToString();
+            oppCtr.Text = numOppChips.ToString();
+           
+
             btnOppMove.Enabled = true;
             btnYourMove.Enabled = false;
             
