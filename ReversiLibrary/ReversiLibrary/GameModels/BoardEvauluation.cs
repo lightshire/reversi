@@ -12,7 +12,7 @@ namespace ReversiLibrary.GameModels
         public Board currentBoard;
         public Board gameBoard;
 
-        public int lookAheadDepth = 3;
+        public int lookAheadDepth = 4;
 
         public struct Move
         {
@@ -34,6 +34,14 @@ namespace ReversiLibrary.GameModels
         {
             gameBoard = Board.getInstance;
             currentBoard = board;
+        }
+
+        public Move bestMoveWithoutFlip(Board board, Color color, int depth, bool initialMove)
+        {
+            Move bestMove = new Move();
+
+            return bestMove;
+            initialMove = false;
         }
 
         public Move bestMove(Board board, Color color, int depth, bool initialMove)
@@ -82,7 +90,8 @@ namespace ReversiLibrary.GameModels
                 {
                     if (!endGame)
                     {
-                        newBoard.computeRank(availableMoves.Count - opponentMoves);
+                        int posAdv = positionalAdvantage.positions[move.point];
+                        newBoard.computeRank(availableMoves.Count - opponentMoves + (3*posAdv));
                         move.score = newBoard.stateScore;
 
                     }

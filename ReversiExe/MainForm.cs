@@ -55,43 +55,41 @@ namespace ReversiExe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (coin!="")
-            {//first move
-                SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
-                form.ShowDialog();
-
-                if (coin == "tails")
-                {//second move
-                    SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
-                    form2.ShowDialog();
-                }
-
-                boardControl.createAIThread();
-
-               
+           if (radioButton1.Checked = false && radioButton2.Checked == false) {
+                MessageBox.Show("Select Heads or Tails First!!! The Default is Heads");
+            
             }
+            // insufficient error handling
+           try
+           {
+               if (coin != "")
+               {//first move
+                   SubmitPositionForm form = new SubmitPositionForm(1, oppColor, false);
+                   form.ShowDialog();
 
+                   if (coin == "tails")
+                   {//second move
+                       SubmitPositionForm form2 = new SubmitPositionForm(1, oppColor, true);
+                       form2.ShowDialog();
+                   }
+
+
+                   boardControl.createAIThread();
+
+
+
+               }
+           }
+           catch (Exception y)
+           {
+               MessageBox.Show("Invalid Input", "", MessageBoxButtons.OK);
+
+
+           }
           
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //List<Point> headsAvailableMove = availableMoves();
-
-            if (coin != "")
-            { 
-                //??
-            }
-            SubmitPositionForm form = new SubmitPositionForm(2, yourColor, false);
-            form.ShowDialog();
-           
-           
-
-            btnOppMove.Enabled = true;
-           
-            
-        }
 
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
