@@ -24,13 +24,11 @@ namespace ReversiExe
 
         public MainForm(String yColor, double bias)
         {
-            boardControl = new BoardControl();
+            
             InitializeComponent();
             coin = "";
-
-            panel1.Controls.Add(boardControl);
             board = Board.getInstance;
-            panel1.Controls.Add(boardControl);
+            
 
             numMyChips = 2;
             numOppChips = 2;
@@ -50,6 +48,8 @@ namespace ReversiExe
                 oppColor = Color.Black;
                 btnYourMove.Enabled = false;
             }
+            boardControl = new BoardControl(yourColor, oppColor, biasFactor);
+            panel1.Controls.Add(boardControl);
         }
 
         private void button1_Click(object sender, EventArgs e)

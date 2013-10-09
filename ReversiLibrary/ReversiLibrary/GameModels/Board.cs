@@ -89,7 +89,6 @@ namespace ReversiLibrary.GameModels
             boardChips = new Dictionary<Point,Chip>(board.boardChips);
             teamColor = board.teamColor;
             opponentColor = board.opponentColor;
-            teamColor = board.teamColor;
             
             initialState = false;
 

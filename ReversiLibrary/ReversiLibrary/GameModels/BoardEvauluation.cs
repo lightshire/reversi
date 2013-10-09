@@ -12,7 +12,7 @@ namespace ReversiLibrary.GameModels
         public Board currentBoard;
         public Board gameBoard;
 
-        public int lookAheadDepth = 2;
+        public int lookAheadDepth = 3;
 
         public struct Move
         {
@@ -43,14 +43,14 @@ namespace ReversiLibrary.GameModels
             List<Point> availableMoves = new List<Point>();
             //get available moves so error handling will be limited.
 
-            if (initialMove)
-            {
-                availableMoves = board.availableMoves(color, board.boardChips);
-            }
-            else
-            {
-                availableMoves = board.availableMoves(color == Color.Black ? Color.White : Color.Black, board.boardChips);
-            }
+            //if (initialMove)
+            //{
+            availableMoves = board.availableMoves(color, board.boardChips);
+            //}
+            //else
+            //{
+            //    availableMoves = board.availableMoves(color == Color.Black ? Color.White : Color.Black, board.boardChips);
+            //}
             
             
             foreach (Point _point in availableMoves)
@@ -65,14 +65,14 @@ namespace ReversiLibrary.GameModels
 
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
-
-                int opponentMoves = newBoard.availableMoves(nextColor == Color.Black ? Color.White : Color.Black, newBoard.boardChips).Count;
+                List<Point> opponentAvailableMoves = newBoard.availableMoves(color == Color.Black ? Color.White : Color.Black, newBoard.boardChips);
+                int opponentMoves = opponentAvailableMoves.Count;
 
                 if (opponentMoves == 0)
                 {
                     nextColor = nextColor == Color.Black ? Color.White : Color.Black;
-
-                    if (newBoard.availableMoves(nextColor == Color.Black ? Color.White : Color.Black, newBoard.boardChips).Count == 0)
+                    List<Point> oneStepLookAheadMoves = newBoard.availableMoves(nextColor == Color.Black ? Color.White : Color.Black, newBoard.boardChips);
+                    if (oneStepLookAheadMoves.Count == 0)
                     {
                         endGame = true;
                     }
@@ -96,7 +96,8 @@ namespace ReversiLibrary.GameModels
                     {
                         point = move;
                     }
-                    else if (move.score > point.score)
+
+                    if (move.score > point.score)
                     {
                         point = move;
                     }

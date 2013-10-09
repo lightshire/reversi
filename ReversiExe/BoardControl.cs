@@ -59,7 +59,7 @@ namespace ReversiExe
 
         void createAIThread()
         {
-            BoardEvauluation evaluation = new BoardEvauluation(new Board(board));
+           
             AIMoveThread = new Thread(inistiateAIThread);
             AIMoveThread.Start();
 
@@ -67,14 +67,20 @@ namespace ReversiExe
         void inistiateAIThread()
         {
             Board currentBoard = new Board(board);
-
+            Board _board = new Board(currentBoard);
+            _board.boardChips = new Dictionary<Point, Chip>(board.boardChips);
             BoardEvauluation evalv = new BoardEvauluation(currentBoard);
             BoardEvauluation.Move move = evalv.bestMove(currentBoard, Color.Black, 1, true);
             System.Diagnostics.Debug.WriteLine("initiatied AI Thread");
-            
+            board.boardChips = new Dictionary<Point, Chip>(_board.boardChips);
+
             board.addChip(move.point, new Chip(Color.Black, true));
 
-            AIMoveThread.Abort(); //kill the thread afterwards
+            if (AIMoveThread != null && AIMoveThread.ThreadState != ThreadState.Aborted)
+            {
+                AIMoveThread.Abort(); //kill the thread afterwards
+
+            }
         }
         
         void board_AvailableMovesGenerated(List<Point> points)

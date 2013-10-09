@@ -12,3 +12,7 @@ D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary
 D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.dll
 D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.pdb
 D:\Documents\AI\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.dll
+C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.dll
+C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\bin\Release\ReversiLibrary.pdb
+C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.dll
+C:\Users\Kevin\reversi\ReversiLibrary\ReversiLibrary\obj\Release\ReversiLibrary.pdb
