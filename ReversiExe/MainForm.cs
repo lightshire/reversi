@@ -21,19 +21,24 @@ namespace ReversiExe
         int numMyChips;
         int numOppChips;
         Board board;
+<<<<<<< HEAD
 
         private InitialForm getColor;
 
         
 
+=======
+   
+>>>>>>> 19c5f3e6f69f3b13068a577c85b88a048c29788d
         public MainForm(String yColor, double bias)
         {
             
             InitializeComponent();
             coin = "";
             board = Board.getInstance;
-            
 
+            label21.Text = InitialForm.myColor.ToString();
+            
             numMyChips = 2;
             numOppChips = 2;
             yourCtr.Text = numMyChips.ToString();
@@ -69,10 +74,9 @@ namespace ReversiExe
                     form2.ShowDialog();
                 }
 
-
                 boardControl.createAIThread();
 
-                
+               
             }
 
           
