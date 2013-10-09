@@ -12,7 +12,7 @@ namespace ReversiLibrary.GameModels
         public Board currentBoard;
         public Board gameBoard;
 
-        public int lookAheadDepth = 4;
+        public int lookAheadDepth = 10;
 
         public struct Move
         {
@@ -50,8 +50,11 @@ namespace ReversiLibrary.GameModels
                 tempMove.score = 0;
 
                 Board newBoard = new Board(board);
+                
                 Chip chip = new Chip(color, true);
                 newBoard.addChip(point, chip);
+
+
 
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
@@ -128,15 +131,16 @@ namespace ReversiLibrary.GameModels
 
                 Board newBoard = new Board(board);
                 Chip chip = new Chip(color, true);
-
-               
                 newBoard.addChip(_point, chip);
+                
 
                 Color nextColor = color == Color.Black ? Color.White : Color.Black;
                 bool endGame = false;
 
                 List<Point> opponentAvailableMoves = newBoard.availableMoves(color, newBoard.boardChips);
                 int opponentMoves = opponentAvailableMoves.Count;
+
+
 
                 if (opponentMoves == 0)
                 {
@@ -147,6 +151,7 @@ namespace ReversiLibrary.GameModels
                         endGame = true;
                     }
                 }
+              
 
                 if (endGame || depth == lookAheadDepth)
                 {

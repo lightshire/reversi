@@ -44,6 +44,7 @@
     <Compile Include="GameModels\Board.cs" />
     <Compile Include="GameModels\BoardEvauluation.cs" />
     <Compile Include="GameModels\Chip.cs" />
+    <Compile Include="GameModels\FlipCoin.cs" />
     <Compile Include="GameModels\positionalAdvantage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

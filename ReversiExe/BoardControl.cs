@@ -118,7 +118,7 @@ namespace ReversiExe
 
             board.addChip(move.point, new Chip(myMove, true));
 
-           
+            MessageBox.Show("Turn Done");
             if (AITailThread != null && AITailThread.ThreadState != ThreadState.Aborted)
             {
                 AITailThread.Abort(); //kill the thread afterwards
@@ -145,10 +145,14 @@ namespace ReversiExe
             {
                 createAITailThread();
             }
+            else
+            {
+                MessageBox.Show("Turn Done");
+            }
             if (AIMoveThread != null && AIMoveThread.ThreadState != ThreadState.Aborted)
             {
                 AIMoveThread.Abort(); //kill the thread afterwards
-
+              
             }
         }
         

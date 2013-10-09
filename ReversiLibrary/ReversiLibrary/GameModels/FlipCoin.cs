@@ -5,7 +5,23 @@ using System.Text;
 
 namespace ReversiLibrary.GameModels
 {
-    class FlipCoin
+    public class Coin
     {
+        public enum Face { Head, Tails };
+
+        public static Face Flip(double biasFactor)
+        {
+         
+            Random random = new Random();
+            if (random.NextDouble() <= biasFactor)
+            {
+                return Face.Head;
+            }
+            else
+            {
+                return Face.Tails;
+            }
+            
+        }
     }
 }
